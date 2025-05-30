@@ -7,7 +7,7 @@ const Navbar: NextPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="w-full sticky relative bg-background overflow-hidden flex flex-col items-center justify-start lg:pt-5 px-5 lg:px-20 pb-5 box-border gap-[30px] text-center text-2xl text-maroon">
+    <div className="w-full sticky relative bg-background overflow-hidden flex flex-col items-center justify-start lg:pt-5 pb-5 box-border gap-[30px] text-center text-2xl text-maroon">
       
       {/* Logo and Menu Toggle */}
       <div className="self-stretch flex flex-row items-center justify-between gap-0 font-3">

@@ -1,17 +1,22 @@
 "use client";
 import Navbar from "./components/navbar";
 import Image from "next/image";
+// import Link from "next/link";
+import Project1 from "./project-summaries/project1";
+import Project2 from "./project-summaries/project2";
+import Testimonials from "./components/testimonials";
+import Carousel from "./components/carousel";
 
 export default function Home() {
   return (
     <div className="bg-background">
-      <main>
+      <main className="px-20">
         <Navbar />
 
         {/* HERO */}
         <section
           id="hero"
-          className="w-full relative bg-background flex flex-col items-center justify-center md:pt-5 pb-10 md:px-20  box-border"
+          className="w-full relative bg-background flex flex-col items-center justify-center md:pt-5 pb-10  box-border"
         >
           <div className="self-stretch md:rounded-[20px] h-full min-h-[700px] bg-[url('/herobg.jpg')] bg-cover bg-no-repeat bg-[top]">
             <div className="self-stretch rounded-[20px] h-full min-h-[700px] flex flex-col items-start justify-start bg-black/50">
@@ -52,133 +57,152 @@ export default function Home() {
         {/* ABOUT US*/}
         <section
           id="about-us"
-          className="w-full relative bg-background overflow-y-auto flex flex-row gap-5 items-start justify-center py-[60px] px-10 box-border text-left text-2xl text-black font-3 md:pt-5 pb-10 md:px-20"
+          className="w-full relative bg-background overflow-y-auto flex flex-col gap-15 items-start justify-center py-[60px]box-border text-left text-2xl text-black font-3 py-30 pb-10"
         >
-          <div className="">
-            <div className="">
-              <h1 className=""> </h1>
-              <Image className="" width={128} height={128} alt="" src="/about-arrow.png" />
+          <div className="w-full">
+            <div className="flex flex-row justify-between">
+              <h1 className="font-1 text-brass text-[200px] leading-[180px] h-full">ABOUT</h1>
+              <Image className="w-[128px] h-[128px]" width={128} height={128} alt="" src="/about-arrow.png" />
             </div>
-            <div className="">
-              <h1 className=""></h1>
-              <Image className="" width={932} height={154} alt="" src="/aboutimg4.png" />
-            </div>
-          </div>
-
-          <div className="">
-            <div className="">
-              <p className=""></p>
-              <p className=""></p>
-            </div>
-            <Image className="" width={594} height={245} alt="" src="/aboutimg1.png" />
-          </div>
-
-          <div className="">
-            <Image className="" width={523} height={174} alt="" src="/aboutimg2.png" />
-            <div className="">
-              <p className=""></p>
-              <p className=""></p>
+            <div className="flex flex-row justify-between">
+              <h1 className="font-1 text-brass text-[200px] leading-[180px] h-full">US</h1>
+              <Image className="object-cover w-[932px] h-[154px] rounded-2xl" width={932} height={154} alt="" src="/herobg.jpg" />
             </div>
           </div>
 
-          <div className="">
-            <div className="">
-              <h1 className=""></h1>
-              <p className=""></p>
+          <div className="w-full flex flex-row justify-between gap-20">
+            <div className="flex flex-col justify-start gap-30">
+              <p className="">Marrying the beauty of interior design with the strategy of organization, Elira transforms everyday spaces into sanctuaries.</p>
+              <p className="">Elira is for people who want their homes or offices to feel just as put-together as a hotel room.</p>
             </div>
-            <Image className="" width={549} height={154} alt="" src="/aboutimg3.png" />
+            <Image className="w-1/2 rounded-2xl" width={594} height={145} alt="" src="/herobg.jpg" />
+          </div>
+
+          <div className="w-full flex flex-row justify-between gap-20">
+            <Image className="w-1/2 rounded-2xl" width={423} height={174} alt="" src="/herobg.jpg" />
+            <div className="flex flex-col justify-start gap-20">
+              <p className="">When your space is clear, your mind is clear. </p>
+              <p className="">And when your mind is clear, everything else moves quicker and easier.</p>
+            </div>
+          </div>
+
+          <div className="w-full flex flex-row justify-between gap-20">
+            <div className="w-full flex flex-col">
+              <h1 className="font-1 text-brass text-[128px] leading-[128px] h-full">MEET THE FOUNDER</h1>
+              <p className="">Soniru has always had an eye for order - From a young age, she found deep satisfaction in making spaces feel clean, put-together, and thoughtfully arranged.</p>
+            </div>
+            <Image className="w-1/2 rounded-2xl" width={594} height={154} alt="" src="/herobg.jpg" />
           </div>
         </section>
 
         {/* OUR SERVICES*/}
-        <section>
-          <div className="">
-            <h1 className=""></h1>
-            <h1 className=""></h1>
+        <section id="our-services" className="text-left text-2xl py-30 text-black font-3 flex flex-col gap-10">
+          <div className="flex flex-row justify-between pt-5">
+            <h1 className="font-1 text-[92px] leading-[92px] text-maroon">OUR SERVICES</h1>
+            <h1 className="font-1 text-[96px] leading-[96px] text-maroon">←</h1>
           </div>
-          <div className="">
-            <div className="">
-              <p className=""></p>
-              <Image className="" width={621} height={387} alt="" src="/servicesimg.png" />
+          <div className="flex flex-row justify-between gap-20">
+            <div className="flex flex-col justify-between w-1/2 gap-10">
+              <p className="">We create systems that would prevent future clutter. The kind that makes a space feel light, breathable, and easy to maintain.</p>
+              <Image className="rounded-2xl" width={621} height={387} alt="" src="/servicesimg.png" />
             </div>
-            <div className="">
+            <div className="flex flex-col justify-between w-1/2">
               <div className="">
-                <h2 className=""></h2>
-                <p className=""></p>
+                <h2 className="">Home and Office Decluttering</h2>
+                <p className="">Lorem ipsum</p>
               </div>
               <div className="">
-                <h2 className=""></h2>
-                <p className=""></p>
+                <h2 className="">Move-In Services</h2>
+                <p className="">Lorem ipsum</p>
               </div>
               <div className="">
-                <h2 className=""></h2>
-                <p className=""></p>
+                <h2 className="">Closet Decluttering</h2>
+                <p className="">Lorem ipsum</p>
               </div>
             </div>
           </div>
         </section>
 
         {/* OUR PROJECTS*/}
-        <section>
-          <div className="">
-            <h1 className=""></h1>
-            <h1 className=""></h1>
+        <section id="our-projects" className="text-left py-30 text-maroon flex flex-col">
+          <div className=" flex flex-row justify-between">
+            <h1 className="font-1 text-[92px]">OUR PROJECTS</h1>
+            <h1 className="font-1 text-[92px]">←</h1>
           </div>
-          {/*Project Summary component*/}
+          <Project1/>
+          <Project2/>
+          <div className="flex flex-row justify-end">
+              <h1 className="font-2 text-[48px]">see more projects →</h1>
+            </div>
+          
         </section>
 
         {/* TESTIMONIALS */}
-        <section>
-          <div className="">
-            {/* Carousel component */}
-            <div className=""></div>
-            <div className=""></div>
+        <section id="testimonials" className="h-[832px] text-left py-30 flex flex-row">
+          <div className="w-full flex flex-col justify-start">
+            <Carousel/>
           </div>
-          <div className="">
-            <div className="">
-              <h1 className=""></h1>
-              <p className=""></p>
-            </div>
-            <div className="">{/* Testimonials component */}</div>
+          <div className="w-full h-full">
+            <div className="flex flex-col justify-start items-end">
+              <h1 className="font-1 text-maroon text-[92px] leading-[92px]">TESTIMONIALS</h1>
+              <p className="font-3 text-maroon text-[26px] leading-[26px]">from our clients</p>
+            </div> 
           </div>
+          <div className="absolute mt-[274px] ml-[480px]"><Testimonials/></div>
         </section>
-
-        {/* CONTACT US*/}
-        <section>
-          <div className="">
-            <div className="">
-              <div className="">
-                <h1 className=""></h1>
-                <p className=""></p>
-              </div>
-              <div className="">
-                <p className=""></p>
-                <p className=""></p>
-              </div>
-            </div>
-            <div className="">
-              <div className="">
-                <div className=""></div>
-                <div className=""></div>
-                <div className=""></div>
-                <div className=""></div>
-              </div>
-              <div className="">
-                <div className=""></div>
-              </div>
-              <div className="">
-                <div className=""></div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <footer>
-          <div className=""></div>
-          <div className=""></div>
-          <div className=""></div>
-        </footer>
       </main>
+              {/* CONTACT US*/}
+
+      
+      <section id="" className="w-full h-full bg-[url('/herobg.jpg')] bg-cover mt-30 px-[40px] py-[60px]">
+          <div className="w-full h-full bg-maroon flex flex-row font-3 text-white">
+            <div className="w-1/2 flex flex-col justify-between gap-10 px-[35px] py-[106px]">
+              <div className="flex flex-col justify-start gap-5 ">
+                <h1 className="font-2 text-[48px] w-2/3">Get In Touch With Us</h1>
+                <p className="font-3 text-[20px]">Have a project in mind or need expert guidance? We’d love to hear from you. Reach out to us for inquiries, collaborations or consultations.</p>
+              </div>
+              <div className="w-1/2">
+                <p className="font-3 text-[20px]">+234 000 1111 222</p>
+                <p className="font-3 text-[20px]">elirabysoniru@gmail.com</p>
+              </div>
+            </div>
+            <div className="w-1/2 flex flex-col justify-center gap-5 text-lg px-10">
+              <div className="w-full grid grid-cols-2 grid-rows-2 gap-x-8 gap-y-2 items-start">
+                <div className="">
+                  <p>First Name</p>
+                  <div className="w-full h-[24px] bg-brass"></div>
+                </div> 
+                <div className="">
+                  <p>Last Name</p>
+                  <div className="w-full h-[24px] bg-brass"></div>
+                </div>
+                <div className="">
+                  <p>Phone Number</p>
+                  <div className="w-full h-[24px] bg-brass"></div>
+                </div>
+                <div className="">
+                  <p>Email</p>
+                  <div className="w-full h-[24px] bg-brass"></div>
+                </div>
+              </div>
+              <div className="w-full">
+                <div className="">
+                  <p>Message</p>
+                  <div className="w-full h-[72px] bg-brass"></div>
+                </div>
+              </div>
+              <div className="w-full">
+                <div className="text-maroon text-[16px] py-[12px] bg-background px-[150px] flex justify-center rounded-2xl">Submit</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      <footer className="w-full px-40 py-5 bg-maroon flex flex-row justify-between font-3 text-white text-xl">
+          <div className="">All Rights Reserved.</div>
+          <div className="">© Elira By Soniru</div>
+          <div className="">Built by Exhibit O Design</div>
+      </footer>
     </div>
   );
 }
