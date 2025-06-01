@@ -8,6 +8,13 @@ import Project2 from "./project-summaries/project2";
 import { useState } from "react";
 
 export default function Home() {
+  // Carousel images (placeholder URLs for now)
+  const carouselImages = [
+    "/herobg.jpg",
+    "/test1.png",
+    "/test3.png",
+  ];
+  const [carouselIndex, setCarouselIndex] = useState(0);
   // Contact form state
   const [form, setForm] = useState({
     firstName: "",
@@ -284,57 +291,43 @@ export default function Home() {
           className="min-h-[800px] md:h-[832px] text-left py-30 flex flex-col-reverse md:flex-row gap-8 md:gap-16 px-5 md:px-20 lg:px-40"
         >
           {/* Nested: Carousel container */}
-          {(() => {
-            // Carousel images (placeholder URLs for now)
-            const carouselImages = [
-              "/herobg.jpg",
-              "/test1.png",
-              "/test3.png",
-            ];
-            const [carouselIndex, setCarouselIndex] = useState(0);
-            // Looping behavior
-            const prevSlide = () => {
-              setCarouselIndex((prev) =>
-                prev === 0 ? carouselImages.length - 1 : prev - 1
-              );
-            };
-            const nextSlide = () => {
-              setCarouselIndex((prev) =>
-                prev === carouselImages.length - 1 ? 0 : prev + 1
-              );
-            };
-            return (
-              <div className="w-full flex flex-col mb-5 md:mb-0 justify-start">
-                {/* Carousel component */}
-                <div className="flex flex-col gap-5 items-center px-[30px]">
-                  <div
-                    className="w-full max-w-[628px] h-[300px] md:h-[450px] lg:h-[551px] bg-coffee rounded-3xl flex items-center justify-center"
-                    style={{
-                      backgroundImage: `url('${carouselImages[carouselIndex]}')`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                    }}
-                  ></div>
-                  <div className="w-full flex flex-row justify-center md:justify-start gap-5">
-                    <div
-                      className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-coffee text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-[20px] cursor-pointer"
-                      onClick={prevSlide}
-                      aria-label="Previous Slide"
-                    >
-                      ←
-                    </div>
-                    <div
-                      className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-coffee text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-[20px] cursor-pointer"
-                      onClick={nextSlide}
-                      aria-label="Next Slide"
-                    >
-                      →
-                    </div>
-                  </div>
+          <div className="w-full flex flex-col mb-5 md:mb-0 justify-start">
+            {/* Carousel component */}
+            <div className="flex flex-col gap-5 items-center px-[30px]">
+              <div
+                className="w-full max-w-[628px] h-[300px] md:h-[450px] lg:h-[551px] bg-coffee rounded-3xl flex items-center justify-center"
+                style={{
+                  backgroundImage: `url('${carouselImages[carouselIndex]}')`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></div>
+              <div className="w-full flex flex-row justify-center md:justify-start gap-5">
+                <div
+                  className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-coffee text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-[20px] cursor-pointer"
+                  onClick={() =>
+                    setCarouselIndex((prev) =>
+                      prev === 0 ? carouselImages.length - 1 : prev - 1
+                    )
+                  }
+                  aria-label="Previous Slide"
+                >
+                  ←
+                </div>
+                <div
+                  className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-coffee text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-[20px] cursor-pointer"
+                  onClick={() =>
+                    setCarouselIndex((prev) =>
+                      prev === carouselImages.length - 1 ? 0 : prev + 1
+                    )
+                  }
+                  aria-label="Next Slide"
+                >
+                  →
                 </div>
               </div>
-            );
-          })()}
+            </div>
+          </div>
           {/* Nested: Testimonials component positioned absolutely on desktop */}
           <div className="md:absolute md:mt-[274px] md:ml-[480px]">
             <div className="w-full md:w-[700px] md:h-[374px] bg-background rounded-3xl p-[30px] text-white flex flex-col md:flex-row gap-20">
