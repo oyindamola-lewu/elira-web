@@ -10,13 +10,12 @@ import Carousel from "./components/carousel";
 export default function Home() {
   return (
     <div className="bg-background">
-      <main className="px-20">
-        <Navbar />
-
+      <Navbar />
+      <main className="">
         {/* HERO */}
         <section
           id="hero"
-          className="w-full relative bg-background flex flex-col items-center justify-center md:pt-5 pb-10  box-border"
+          className="w-full relative bg-background flex flex-col items-center justify-center md:pt-30 pb-10 px-20 box-border"
         >
           <div className="self-stretch md:rounded-[20px] h-full min-h-[700px] bg-[url('/herobg.jpg')] bg-cover bg-no-repeat bg-[top]">
             <div className="self-stretch rounded-[20px] h-full min-h-[700px] flex flex-col items-start justify-start bg-black/50">
@@ -57,7 +56,7 @@ export default function Home() {
         {/* ABOUT US*/}
         <section
           id="about-us"
-          className="w-full relative bg-background overflow-y-auto flex flex-col gap-15 items-start justify-center py-[60px]box-border text-left text-2xl text-black font-3 py-30 pb-10"
+          className="w-full relative bg-background overflow-y-auto flex flex-col gap-15 items-start justify-center py-[60px]box-border text-left text-2xl text-black font-3 py-30 pb-10 px-20"
         >
           <div className="w-full">
             <div className="flex flex-row justify-between">
@@ -96,10 +95,10 @@ export default function Home() {
         </section>
 
         {/* OUR SERVICES*/}
-        <section id="our-services" className="text-left text-2xl py-30 text-black font-3 flex flex-col gap-10">
+        <section id="our-services" className="text-left text-2xl py-30 text-white font-3 flex flex-col gap-10 bg-coffee px-20">
           <div className="flex flex-row justify-between pt-5">
-            <h1 className="font-1 text-[92px] leading-[92px] text-maroon">OUR SERVICES</h1>
-            <h1 className="font-1 text-[96px] leading-[96px] text-maroon">←</h1>
+            <h1 className="font-1 text-[92px] leading-[92px] text-brass">OUR SERVICES</h1>
+            <h1 className="font-1 text-[96px] leading-[96px] text-brass">←</h1>
           </div>
           <div className="flex flex-row justify-between gap-20">
             <div className="flex flex-col justify-between w-1/2 gap-10">
@@ -124,7 +123,7 @@ export default function Home() {
         </section>
 
         {/* OUR PROJECTS*/}
-        <section id="our-projects" className="text-left py-30 text-maroon flex flex-col">
+        <section id="our-projects" className="text-left py-30 text-maroon flex flex-col px-20">
           <div className=" flex flex-row justify-between">
             <h1 className="font-1 text-[92px]">OUR PROJECTS</h1>
             <h1 className="font-1 text-[92px]">←</h1>
@@ -138,7 +137,7 @@ export default function Home() {
         </section>
 
         {/* TESTIMONIALS */}
-        <section id="testimonials" className="h-[832px] text-left py-30 flex flex-row">
+        <section id="testimonials" className="h-[832px] text-left py-30 flex flex-row px-20">
           <div className="w-full flex flex-col justify-start">
             <Carousel/>
           </div>
@@ -150,11 +149,19 @@ export default function Home() {
           </div>
           <div className="absolute mt-[274px] ml-[480px]"><Testimonials/></div>
         </section>
-      </main>
-              {/* CONTACT US*/}
 
-      
-      <section id="" className="w-full h-full bg-[url('/herobg.jpg')] bg-cover mt-30 px-[40px] py-[60px]">
+        <section className="bg-maroon h-full my-20 px-70 py-20 flex flex-col gap-5 mx-20">
+          <h1 className="font-2 text-5xl w-full text-center text-white">BOOK A CONSULTATION 
+            TODAY TO GET STARTED
+          </h1>
+          <p className="text-white font-3 text-2xl text-center w-full">CLICK HERE →</p>
+        </section>
+
+        
+      </main>
+
+      {/* CONTACT US*/}
+      <section id="contact" className="w-full h-[832px] bg-[url('/herobg.jpg')] bg-cover mt-30 px-[40px] py-[60px]">
           <div className="w-full h-full bg-maroon flex flex-row font-3 text-white">
             <div className="w-1/2 flex flex-col justify-between gap-10 px-[35px] py-[106px]">
               <div className="flex flex-col justify-start gap-5 ">

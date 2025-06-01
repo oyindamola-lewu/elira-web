@@ -2,16 +2,16 @@ import type { NextPage } from 'next';
 import Image from "next/image";
 import { useState } from 'react';
 
-const Navbar: NextPage = () => {
+const NavbarDark: NextPage = () => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="z-1 w-full fixed bg-background overflow-hidden flex flex-col items-center justify-start lg:pt-5 pb-5 box-border gap-[30px] text-center text-2xl text-maroon px-20">
+    <div className="z-1 w-full bg-coffee overflow-hidden flex flex-col items-center justify-start lg:pt-5 pb-5 box-border gap-[30px] text-center text-2xl text-white px-20">
       
       {/* Logo and Menu Toggle */}
       <div className="self-stretch flex flex-row items-center justify-between gap-0 font-3">
-        <Image className="w-[39px] relative max-h-full object-cover" width={39} height={54} sizes="100vw" alt="" src="/logo.png" />
+        <Image className="w-[39px] relative max-h-full object-cover" width={39} height={54} sizes="100vw" alt="" src="/logo-dark.png" />
         
         <div className="w-[119px] rounded-xl flex flex-col items-center justify-center py-[5px] px-0 box-border">
           <button
@@ -40,4 +40,4 @@ const Navbar: NextPage = () => {
   );
 };
 
-export default Navbar;
+export default NavbarDark;
