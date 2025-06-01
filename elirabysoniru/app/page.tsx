@@ -37,21 +37,21 @@ export default function Home() {
         {/* Hero section */}
         <section
           id="hero"
-          className="w-full relative bg-background flex flex-col items-center justify-center lg:pt-30 pb-10 lg:px-20 pt-20 box-border"
+          className="w-full relative bg-background flex flex-col items-center justify-center lg:pt-0 pb-10 lg:px-20 pt-20 box-border"
         >
           {/* Nested: Hero background image container */}
           <div className="self-stretch rounded-none lg:rounded-[20px] h-full bg-[url('/herobg.jpg')] bg-cover bg-no-repeat bg-[top]">
             {/* Nested: Overlay with black transparent background */}
             <div className="self-stretch rounded-none lg:rounded-[20px] h-full min-h-[700px] flex flex-col items-start justify-center bg-black/50">
               {/* Nested: Heading container */}
-              <div className="w-full h-1/2 text-start px-10 lg:px-20 md:pt-10">
+              <div className="w-full h-1/2 text-start px-10 lg:px-20 md:pt-10 animate-slideInUp">
                 {/* Text block: Main hero heading */}
                 <h1 className="font-1 text-white text-[100px] md:text-[140px] lg:text-[180px]">
                   ELIRA BY SONIRU.
                 </h1>
               </div>
               {/* Nested: Content row with text and image */}
-              <div className="w-full h-1/2 flex flex-col md:flex-row items-start align-center  px-10 lg:px-20 md:pt-10 gap-20">
+              <div className="w-full h-1/2 flex flex-col md:flex-row items-start animate-slideInUp align-center  px-10 lg:px-20 md:pt-10 gap-20">
                 {/* Text block: Hero description and button */}
                 <div className="w-full md:w-1/2 h-full text-white font-3 flex flex-col items-start justify-center gap-5">
                   <p className="text-2xl md:text-4xl w-4/5">
@@ -60,16 +60,16 @@ export default function Home() {
                   {/* Nested: Consultation button */}
                   <Link
                     href="/bookings"
-                    className=" bg-gray-100/10 border-linen border-solid border-[0.5px] py-3 px-4 text-sm md:text-base"
+                    className=" bg-gray-100/10 border-linen border-solid border-[0.5px] py-3 px-4 text-sm md:text-base hover:bg-white hover:text-black"
                   >
                     Book Your Consultation →
                   </Link>
                 </div>
                 {/* Image block: Curved text image */}
-                <div className="hidden w-full md:w-1/2 h-full md:flex items-center justify-center p-6">
+                <div className="hidden w-full md:w-1/2 h-full md:flex items-start justify-center px-6 py-4">
                   {/* Image: Curved Text */}
                   <Image
-                    className="w-[180px] sm:w-[220px] md:w-[260px] object-cover"
+                    className="w-[180px] sm:w-[220px] md:w-[260px] object-cover rotate-360"
                     width={260}
                     height={260}
                     alt="Curved Text"
@@ -123,7 +123,7 @@ export default function Home() {
           {/* Nested: About Us content row 1 */}
           <div className="w-full flex flex-col md:flex-row justify-between gap-8 md:gap-20">
             {/* Text block: About description left */}
-            <div className="flex flex-col justify-start gap-8 md:gap-10">
+            <div className="flex flex-col justify-around gap-8 md:gap-10">
               <p className="text-base md:text-2xl">
                 Marrying the beauty of interior design with the strategy of
                 organization, Elira transforms everyday spaces into sanctuaries.
@@ -139,7 +139,7 @@ export default function Home() {
               width={594}
               height={145}
               alt=""
-              src="/herobg.jpg"
+              src="/test1.png"
             />
           </div>
 
@@ -151,10 +151,10 @@ export default function Home() {
               width={423}
               height={174}
               alt=""
-              src="/herobg.jpg"
+              src="/test3.png"
             />
             {/* Text block: About description right */}
-            <div className="flex flex-col justify-start gap-8 md:gap-10">
+            <div className="flex flex-col justify-around gap-8 md:gap-10">
               <p className="text-base md:text-2xl">
                 When your space is clear, your mind is clear.{" "}
               </p>
@@ -284,20 +284,57 @@ export default function Home() {
           className="min-h-[800px] md:h-[832px] text-left py-30 flex flex-col-reverse md:flex-row gap-8 md:gap-16 px-5 md:px-20 lg:px-40"
         >
           {/* Nested: Carousel container */}
-          <div className="w-full flex flex-col mb-5 md:mb-0 justify-start">
-            {/* Carousel component */}
-            <div className="flex flex-col gap-5 items-center px-[30px]">
-              <div className="w-full max-w-[628px] h-[300px] md:h-[450px] lg:h-[551px] bg-coffee rounded-3xl"></div>
-              <div className="w-full flex flex-row justify-center md:justify-start gap-5">
-                <div className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-coffee text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-[20px]">
-                  ←
-                </div>
-                <div className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-coffee text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-[20px]">
-                  →
+          {(() => {
+            // Carousel images (placeholder URLs for now)
+            const carouselImages = [
+              "/herobg.jpg",
+              "/test1.png",
+              "/test3.png",
+            ];
+            const [carouselIndex, setCarouselIndex] = useState(0);
+            // Looping behavior
+            const prevSlide = () => {
+              setCarouselIndex((prev) =>
+                prev === 0 ? carouselImages.length - 1 : prev - 1
+              );
+            };
+            const nextSlide = () => {
+              setCarouselIndex((prev) =>
+                prev === carouselImages.length - 1 ? 0 : prev + 1
+              );
+            };
+            return (
+              <div className="w-full flex flex-col mb-5 md:mb-0 justify-start">
+                {/* Carousel component */}
+                <div className="flex flex-col gap-5 items-center px-[30px]">
+                  <div
+                    className="w-full max-w-[628px] h-[300px] md:h-[450px] lg:h-[551px] bg-coffee rounded-3xl flex items-center justify-center"
+                    style={{
+                      backgroundImage: `url('${carouselImages[carouselIndex]}')`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                    }}
+                  ></div>
+                  <div className="w-full flex flex-row justify-center md:justify-start gap-5">
+                    <div
+                      className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-coffee text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-[20px] cursor-pointer"
+                      onClick={prevSlide}
+                      aria-label="Previous Slide"
+                    >
+                      ←
+                    </div>
+                    <div
+                      className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-coffee text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-[20px] cursor-pointer"
+                      onClick={nextSlide}
+                      aria-label="Next Slide"
+                    >
+                      →
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>{" "}
-          </div>
+            );
+          })()}
           {/* Nested: Testimonials component positioned absolutely on desktop */}
           <div className="md:absolute md:mt-[274px] md:ml-[480px]">
             <div className="w-full md:w-[700px] md:h-[374px] bg-background rounded-3xl p-[30px] text-white flex flex-col md:flex-row gap-20">
@@ -339,14 +376,14 @@ export default function Home() {
         </section>
 
         {/* Consultation booking section */}
-        <section className="bg-maroon h-full my-10 md:my-20 px-5 md:px-10 lg:px-30 py-10 md:py-20 flex flex-col gap-5 mx-5 md:mx-10 lg:mx-20">
+        <section className="bg-coffee h-full my-10 md:my-20 px-5 md:px-10 lg:px-30 py-10 md:py-20 flex flex-col gap-5 mx-5 md:mx-10 lg:mx-20">
           {/* Text block: Booking heading */}
           <h1 className="font-2 text-3xl md:text-4xl lg:text-4xl w-full text-center text-white">
             Book a consultation today to get started.
           </h1>
           {/* Text block: Click here prompt */}
           <Link href="/bookings">
-            <p className="text-white font-3 text-lg md:text-xl lg:text-2xl text-center w-full">
+            <p className="text-white font-3 text-lg md:text-xl lg:text-2xl text-center w-full hover:text-yellow-400">
               CLICK HERE →
             </p>
           </Link>
