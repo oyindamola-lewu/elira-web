@@ -5,7 +5,29 @@ import Link from "next/link";
 import Project1 from "./project-summaries/project1";
 import Project2 from "./project-summaries/project2";
 
+import { useState } from "react";
+
 export default function Home() {
+  // Contact form state
+  const [form, setForm] = useState({
+    firstName: "",
+    lastName: "",
+    phone: "",
+    email: "",
+    message: "",
+  });
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    const { name, value } = e.target;
+    setForm((prev) => ({ ...prev, [name]: value }));
+  }
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    // Log the form values
+    console.log(form);
+  }
+
   return (
     // Main page wrapper
     <div className="bg-background">
@@ -38,7 +60,7 @@ export default function Home() {
                   {/* Nested: Consultation button */}
                   <Link
                     href="/bookings"
-                    className="rounded-md bg-gray-100/10 border-linen border-solid border-[0.5px] py-3 px-4 text-sm md:text-base"
+                    className=" bg-gray-100/10 border-linen border-solid border-[0.5px] py-3 px-4 text-sm md:text-base"
                   >
                     Book Your Consultation →
                   </Link>
@@ -248,9 +270,11 @@ export default function Home() {
           </div>
           {/* Nested: See more projects link */}
           <div className="flex flex-row justify-end">
-            <h1 className="font-2 text-2xl md:text-4xl lg:text-[48px] text-right">
-              see more projects →
-            </h1>
+            <Link href="/portfolio">
+              <h1 className="font-2 text-2xl md:text-4xl lg:text-[48px] text-right">
+                see more projects →
+              </h1>
+            </Link>
           </div>
         </section>
 
@@ -315,15 +339,17 @@ export default function Home() {
         </section>
 
         {/* Consultation booking section */}
-        <section className="bg-maroon h-full my-10 md:my-20 px-5 md:px-10 lg:px-20 py-10 md:py-20 flex flex-col gap-5 mx-5 md:mx-10 lg:mx-20">
+        <section className="bg-maroon h-full my-10 md:my-20 px-5 md:px-10 lg:px-30 py-10 md:py-20 flex flex-col gap-5 mx-5 md:mx-10 lg:mx-20">
           {/* Text block: Booking heading */}
-          <h1 className="font-2 text-3xl md:text-4xl lg:text-5xl w-full text-center text-white">
-            BOOK A CONSULTATION TODAY TO GET STARTED
+          <h1 className="font-2 text-3xl md:text-4xl lg:text-4xl w-full text-center text-white">
+            Book a consultation today to get started.
           </h1>
           {/* Text block: Click here prompt */}
-          <p className="text-white font-3 text-lg md:text-xl lg:text-2xl text-center w-full">
-            CLICK HERE →
-          </p>
+          <Link href="/bookings">
+            <p className="text-white font-3 text-lg md:text-xl lg:text-2xl text-center w-full">
+              CLICK HERE →
+            </p>
+          </Link>
         </section>
       </main>
 
@@ -353,42 +379,86 @@ export default function Home() {
           </div>
           {/* Nested: Contact form right column */}
           <div className="w-full md:w-1/2 flex flex-col justify-center gap-5 text-base md:text-lg lg:text-xl px-5 md:px-10 lg:px-20">
-            {/* Nested: Form fields grid */}
-            <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-x-8 gap-y-2 items-start">
-              {/* Text block and input placeholder: First Name */}
-              <div className="">
-                <p>First Name</p>
-                <div className="w-full h-[24px] bg-brass"></div>
+            <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+              {/* Nested: Form fields grid */}
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-x-8 gap-y-2 items-start">
+                {/* Text block and input: First Name */}
+                <div>
+                  <p>First Name</p>
+                  <input
+                    className="w-full h-[24px] bg-brass text-white placeholder-gray outline-none border-none px-2 py-4 text-lg"
+                    type="text"
+                    name="firstName"
+                    required
+                    placeholder="Enter your first name"
+                    value={form.firstName}
+                    onChange={handleChange}
+                  />
+                </div>
+                {/* Text block and input: Last Name */}
+                <div>
+                  <p>Last Name</p>
+                  <input
+                    className="w-full h-[24px] bg-brass text-white placeholder-grey outline-none border-none  px-2 py-4 text-lg"
+                    type="text"
+                    name="lastName"
+                    required
+                    placeholder="Enter your last name"
+                    value={form.lastName}
+                    onChange={handleChange}
+                  />
+                </div>
+                {/* Text block and input: Phone Number */}
+                <div>
+                  <p>Phone Number</p>
+                  <input
+                    className="w-full h-[24px] bg-brass text-white  placeholder-gray outline-none border-none  px-2 py-4 text-lg"
+                    type="tel"
+                    name="phone"
+                    required
+                    placeholder="Enter your phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                  />
+                </div>
+                {/* Text block and input: Email */}
+                <div>
+                  <p>Email</p>
+                  <input
+                    className="w-full h-[24px] bg-brass text-white placeholder-gray outline-none border-none text-lg px-2 py-4"
+                    type="email"
+                    name="email"
+                    required
+                    placeholder="Enter your email"
+                    value={form.email}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
-              {/* Text block and input placeholder: Last Name */}
-              <div className="">
-                <p>Last Name</p>
-                <div className="w-full h-[24px] bg-brass"></div>
+              {/* Nested: Message field */}
+              <div className="w-full">
+                <div>
+                  <p>Message</p>
+                  <textarea
+                    className="w-full h-[72px] bg-brass text-white placeholder-gray outline-none border-none text-lg p-2"
+                    name="message"
+                    required
+                    placeholder="Enter your message"
+                    value={form.message}
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
-              {/* Text block and input placeholder: Phone Number */}
-              <div className="">
-                <p>Phone Number</p>
-                <div className="w-full h-[24px] bg-brass"></div>
+              {/* Nested: Submit button */}
+              <div className="w-full">
+                <button
+                  type="submit"
+                  className="w-full text-maroon text-sm md:text-base lg:text-lg py-[12px] bg-background px-10 md:px-20 lg:px-40 flex justify-center"
+                >
+                  Submit
+                </button>
               </div>
-              {/* Text block and input placeholder: Email */}
-              <div className="">
-                <p>Email</p>
-                <div className="w-full h-[24px] bg-brass"></div>
-              </div>
-            </div>
-            {/* Nested: Message field */}
-            <div className="w-full">
-              <div className="">
-                <p>Message</p>
-                <div className="w-full h-[72px] bg-brass"></div>
-              </div>
-            </div>
-            {/* Nested: Submit button */}
-            <div className="w-full">
-              <div className="text-maroon text-sm md:text-base lg:text-lg py-[12px] bg-background px-10 md:px-20 lg:px-40 flex justify-center rounded-2xl">
-                Submit
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       </section>
