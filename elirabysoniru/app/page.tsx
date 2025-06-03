@@ -307,7 +307,7 @@ reorganize your space
         {/* Our Projects section */}
         <section
           id="our-projects"
-          className="hidden text-left py-30 text-maroon flex flex-col gap-8 md:gap-12 lg:gap-20 md:px-20 lg:px-40"
+          className="hidden text-left py-30 text-maroon md:flex flex-col gap-8 md:gap-12 lg:gap-20 md:px-20 lg:px-40"
         >
           {/* Nested: Our Projects header row */}
           <div className="flex flex-row justify-center md:justify-between gap-8 md:gap-10">
