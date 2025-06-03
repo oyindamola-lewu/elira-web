@@ -7,7 +7,7 @@ const NavbarDark: NextPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 w-full bg-coffee  flex flex-col items-center justify-start lg:pt-5 pb-5 box-border gap-[30px] text-center text-2xl text-white px-20">
+    <div className="sticky top-0 z-50 w-full bg-coffee  flex flex-col items-center justify-start lg:pt-5 pb-5 box-border gap-[30px] text-center text-2xl text-white px-10 md:px-20">
       
       {/* Logo and Menu Toggle */}
       <div className="self-stretch flex flex-row items-center justify-between gap-0 font-3">

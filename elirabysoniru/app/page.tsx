@@ -44,7 +44,7 @@ export default function Home() {
         {/* Hero section */}
         <section
           id="hero"
-          className="w-full relative bg-background flex flex-col items-center justify-center lg:pt-0 pb-10 lg:px-20 pt-20 box-border"
+          className="w-full relative bg-background flex flex-col items-center justify-center pt-0 pb-10 lg:px-20 box-border"
         >
           {/* Nested: Hero background image container */}
           <div className="self-stretch rounded-none lg:rounded-[20px] h-full bg-[url('/herobg.jpg')] bg-cover bg-no-repeat bg-[top]">
@@ -91,16 +91,21 @@ export default function Home() {
         {/* About Us section */}
         <section
           id="about-us"
-          className="w-full relative bg-background overflow-y-auto flex flex-col gap-15 items-start justify-center box-border text-left text-black font-3 py-30 pb-10 px-5 md:px-20"
+          className="w-full relative bg-background overflow-y-auto flex flex-col gap-15 items-start justify-center box-border text-left text-black font-3 py-5 md:py-30 pb-10 px-5 md:px-20"
         >
           {/* Nested: About Us main container */}
           <div className="w-full">
             {/* Nested: About Us heading row 1 */}
-            <div className=" flex flex-row md:flex-row justify-between gap-8 md:gap-20">
+            <div className=" flex flex-row md:flex-row justify-between gap-8 md:gap-20 pb-10 md:pb-0">
               {/* Text block: ABOUT heading */}
-              <h1 className="font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
+              <div className="flex flex-row gap-5">
+                <h1 className="font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
                 ABOUT
               </h1>
+              <h1 className="block md:hidden font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
+                US
+              </h1>
+              </div>
               {/* Image: About arrow */}
               <Image
                 className="w-1/5 md:w-[128px] h-auto md:h-[128px]"
@@ -113,7 +118,7 @@ export default function Home() {
             {/* Nested: About Us heading row 2 */}
             <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-20">
               {/* Text block: US heading */}
-              <h1 className="font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
+              <h1 className="hidden md:block font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
                 US
               </h1>
               {/* Image: Hero background */}
@@ -256,7 +261,7 @@ export default function Home() {
         {/* Our Projects section */}
         <section
           id="our-projects"
-          className="text-left py-30 text-maroon flex flex-col gap-8 md:gap-12 lg:gap-20 md:px-20 lg:px-40"
+          className="hidden text-left py-30 text-maroon flex flex-col gap-8 md:gap-12 lg:gap-20 md:px-20 lg:px-40"
         >
           {/* Nested: Our Projects header row */}
           <div className="flex flex-row justify-center md:justify-between gap-8 md:gap-10">
@@ -276,7 +281,7 @@ export default function Home() {
             <Project2 />
           </div>
           {/* Nested: See more projects link */}
-          <div className="flex flex-row justify-end">
+          <div className="flex flex-row justify-end pr-10 md:pr-0">
             <Link href="/portfolio">
               <h1 className="font-2 text-2xl md:text-4xl lg:text-[48px] text-right">
                 see more projects →
@@ -386,10 +391,10 @@ export default function Home() {
       {/* Contact Us section */}
       <section
         id="contact"
-        className="w-full h-[832px] bg-[url('/herobg.jpg')] bg-cover mt-30 px-5 md:px-10 lg:px-20 py-10 md:py-20"
+        className="w-full h-full bg-[url('/herobg.jpg')] bg-cover mt-30 px-5 md:px-10 lg:px-20 py-10 md:py-20"
       >
         {/* Nested: Contact Us main container */}
-        <div className="w-full h-full bg-maroon flex flex-col md:flex-row font-3 text-white">
+        <div className="w-full h-full py-10 bg-maroon flex flex-col md:flex-row font-3 text-white">
           {/* Nested: Contact info left column */}
           <div className="w-full md:w-1/2 flex flex-col justify-between gap-5 md:gap-10 px-5 md:px-10 lg:px-20 py-10 md:py-20">
             {/* Text block: Contact header and description */}
