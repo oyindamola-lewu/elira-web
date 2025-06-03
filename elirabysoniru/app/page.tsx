@@ -9,11 +9,7 @@ import { useState } from "react";
 
 export default function Home() {
   // Carousel images (placeholder URLs for now)
-  const carouselImages = [
-    "/herobg.jpg",
-    "/test1.png",
-    "/test3.png",
-  ];
+  const carouselImages = ["/herobg.jpg", "/test1.png", "/test3.png"];
   const [carouselIndex, setCarouselIndex] = useState(0);
   // Contact form state
   const [form, setForm] = useState({
@@ -24,7 +20,9 @@ export default function Home() {
     message: "",
   });
 
-  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   }
@@ -100,11 +98,11 @@ export default function Home() {
               {/* Text block: ABOUT heading */}
               <div className="flex flex-row gap-5">
                 <h1 className="font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
-                ABOUT
-              </h1>
-              <h1 className="block md:hidden font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
-                US
-              </h1>
+                  ABOUT
+                </h1>
+                <h1 className="block md:hidden font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
+                  US
+                </h1>
               </div>
               {/* Image: About arrow */}
               <Image
@@ -235,25 +233,73 @@ export default function Home() {
               />
             </div>
             {/* Text block right with service details */}
-            <div className="flex flex-col justify-between w-full md:w-1/2 gap-8 md:gap-10">
+            <div className="overflow-scroll flex flex-col justify-between w-full md:w-1/2 gap-8 md:gap-10 h-[540px]">
               <div>
                 <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
-                  Home and Office Decluttering
+                  Professional Home & Space Organization
                 </h2>
-                <p>Lorem ipsum</p>
+                <p>
+                  Decluttering and organizing homes, rooms, wardrobes, pantries,
+                  and more
+                </p>
               </div>
               <div>
                 <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
-                  Move-In Services
+                  Workspace & Office Organization
                 </h2>
-                <p>Lorem ipsum</p>
+                <p>
+                  Functional layout and system creation for desks, storage, and
+                  work areas
+                </p>
               </div>
               <div>
                 <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
-                  Closet Decluttering
+                  Move-In Organization
                 </h2>
-                <p>Lorem ipsum</p>
+                <p>Unpacking, setting up organized systems</p>
               </div>
+              <div>
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                  Wardrobe Curation & Closet Styling
+                </h2>
+                <p>
+                  Streamlining wardrobes, creating categories, and aesthetic
+                  setups
+                </p>
+              </div>
+              <div>
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+Pantry & Kitchen Organization                </h2>
+                <p>
+                  Clear labeling, product arrangement, and easy-to-
+maintain systems
+                </p>
+              </div>
+              <div>
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+Styling & Aesthetic Enhancement               </h2>
+                <p>
+                  Visual upgrades, product placement, and adding
+finishing touches to elevate your space
+                </p>
+              </div>
+              <div>
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+Interior Styling Consultation             </h2>
+                <p>
+                 Moodboards, color palettes, or 3D renderings
+for clients seeking a visual makeover
+                </p>
+              </div>
+              <div>
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">Maintenance Visits 
+          </h2>
+              <p>
+                 Monthly or quarterly check-ins to refresh and
+reorganize your space
+                </p>
+              </div>
+             
             </div>
           </div>
         </section>
@@ -399,7 +445,9 @@ export default function Home() {
           <div className="w-full md:w-1/2 flex flex-col justify-between gap-5 md:gap-10 px-5 md:px-10 lg:px-20 py-10 md:py-20">
             {/* Text block: Contact header and description */}
             <div className="flex flex-col justify-start gap-5 ">
-              <h1 className="font-2 text-3xl md:text-4xl lg:text-[48px] w-2/3">Get In Touch With Us</h1>
+              <h1 className="font-2 text-3xl md:text-4xl lg:text-[48px] w-2/3">
+                Get In Touch With Us
+              </h1>
               <p className="font-3 text-base md:text-lg lg:text-xl">
                 Have a project in mind or need expert guidance? We’d love to
                 hear from you. Reach out to us for inquiries, collaborations or
@@ -408,8 +456,12 @@ export default function Home() {
             </div>
             {/* Text block: Contact phone and email */}
             <div className="w-1/2">
-              <p className="font-3 text-base md:text-lg lg:text-xl">+234 000 1111 222</p>
-              <p className="font-3 text-base md:text-lg lg:text-xl">elirabysoniru@gmail.com</p>
+              <p className="font-3 text-base md:text-lg lg:text-xl">
+                +234 000 1111 222
+              </p>
+              <p className="font-3 text-base md:text-lg lg:text-xl">
+                elirabysoniru@gmail.com
+              </p>
             </div>
           </div>
           {/* Nested: Contact form right column */}

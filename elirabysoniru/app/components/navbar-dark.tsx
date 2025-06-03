@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Image from "next/image";
 import { useState } from 'react';
+import Link from 'next/link';
 
 const NavbarDark: NextPage = () => {
 
@@ -11,7 +12,10 @@ const NavbarDark: NextPage = () => {
       
       {/* Logo and Menu Toggle */}
       <div className="self-stretch flex flex-row items-center justify-between gap-0 font-3">
+        <Link href="/">
         <Image className="w-[39px] relative max-h-full object-cover" width={39} height={54} sizes="100vw" alt="" src="/logo-dark.png" />
+        </Link>
+        
         
         <div className="w-[119px] rounded-xl flex flex-col items-center justify-center py-[5px] px-0 box-border">
           <button
