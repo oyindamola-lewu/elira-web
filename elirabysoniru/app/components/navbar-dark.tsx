@@ -30,13 +30,23 @@ const NavbarDark: NextPage = () => {
       {/* Conditional Menu Links */}
       {menuOpen && (
   <div className="w-full grid grid-cols-1 grid-rows-7 md:grid-cols-3 md:grid-rows-3 lg:grid-cols-4 lg:grid-rows-2 gap-x-8 gap-y-4 font-2 text-left">
-    <div>Home</div>
-    <div>About Us</div>
-    <div>Portfolio</div>
-    <div>The Process</div>
-    <div>Services</div>
-    <div>Testimonials</div>
-    <div>Contact Us</div>
+    <Link href={"#about-us"}>
+          About Us
+        </Link>
+ <Link href={"#our-services"}>
+          Our Services
+        </Link>     <Link href={"#our-services"}>
+          Our Process
+        </Link>
+         <Link className='hidden' href={"#our-proccess"}>
+          Our Projects
+        </Link>
+ <Link href={"#testimonials"}>
+          Testimonials
+        </Link>    
+ <Link href={"#contact"}>
+          Contact Us
+        </Link>    <div></div>
     <div></div>
   </div>
 )}
