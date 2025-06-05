@@ -487,8 +487,8 @@ export default function Home() {
                     really impressed me.
                   </div>
                   <div>
-                    <p className="font-3 text-[24px]">Jane Doe</p>
-                    <p className="font-3 text-[16px]">Architect</p>
+                    <p className="font-3 text-[24px]">Oyindamola Lewu</p>
+                    <p className="font-3 text-[16px]">Lagos, Nigeria</p>
                   </div>
                 </div>
               </div>
