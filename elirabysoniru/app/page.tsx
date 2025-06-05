@@ -4,38 +4,56 @@ import Image from "next/image";
 import Link from "next/link";
 import Project1 from "./project-summaries/project1";
 import Project2 from "./project-summaries/project2";
-
+import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
+
+type FormData = {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  message: string;
+};
+
+//             <div className="h-[20px] w-[20px] rounded-full bg-brass border border-white"></div>
 
 export default function Home() {
-  // Carousel images (placeholder URLs for now)
-  const carouselImages = ["/herobg.jpg", "/test1.png", "/test3.png"];
+  const carouselImages = ["/img1.jpg", "/img2.jpg", "/img7.jpg"];
   const [carouselIndex, setCarouselIndex] = useState(0);
-  // Contact form state
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    phone: "",
-    email: "",
-    message: "",
-  });
 
-  function handleChange(
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
-    const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
-  }
+  const { register, handleSubmit, reset } = useForm<FormData>();
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    // Log the form values
-    console.log(form);
-  }
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    setLoading(true);
+    try {
+      await emailjs.send(
+        "service_k41pckf", // Your EmailJS Service ID
+        "template_5wvv7lb", // Your EmailJS Template ID
+        {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          phone: data.phone,
+          message: data.message,
+        },
+        "6uQe686K3U7R7TzsR" // Your EmailJS Public Key
+      );
+      alert("Your booking was submitted successfully!");
+      reset();
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     // Main page wrapper
     <div className="bg-background">
+
       {/* Navbar component */}
       <Navbar />
       <main className="">
@@ -49,9 +67,9 @@ export default function Home() {
             {/* Nested: Overlay with black transparent background */}
             <div className="self-stretch rounded-none lg:rounded-[20px] h-full min-h-[700px] flex flex-col items-start justify-center bg-black/50">
               {/* Nested: Heading container */}
-              <div className="w-full h-1/2 text-start px-10 lg:px-20 md:pt-10 animate-slideInUp">
+              <div className="w-full h-1/2 text-start px-10 md:px-20 md:pt-10 animate-slideInUp">
                 {/* Text block: Main hero heading */}
-                <h1 className="font-1 text-white text-[100px] md:text-[140px] lg:text-[180px]">
+                <h1 className="font-1 text-white/65 text-[100px] md:text-[140px] lg:text-[180px]">
                   ELIRA BY SONIRU.
                 </h1>
               </div>
@@ -89,56 +107,35 @@ export default function Home() {
         {/* About Us section */}
         <section
           id="about-us"
-          className="w-full relative bg-background overflow-y-auto flex flex-col gap-15 items-start justify-center box-border text-left text-black font-3 py-5 md:py-30 pb-10 px-5 md:px-20"
+          className="w-full relative bg-coffee overflow-y-auto flex flex-col gap-5 md:gap-15 items-start justify-center box-border text-left text-white font-3 md:py-30 pb-10 px-5 md:px-20"
         >
           {/* Nested: About Us main container */}
           <div className="w-full">
             {/* Nested: About Us heading row 1 */}
-            <div className=" flex flex-row md:flex-row justify-between gap-8 md:gap-20 pb-10 md:pb-0">
+            <div className=" flex flex-row md:flex-row items-center justify-between gap-8 md:gap-20  ">
               {/* Text block: ABOUT heading */}
-              <div className="flex flex-row gap-5">
+              <div className="flex flex-row gap-5 md:gap-10">
                 <h1 className="font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
                   ABOUT
                 </h1>
-                <h1 className="block md:hidden font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
+                <h1 className="block font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
                   US
                 </h1>
               </div>
               {/* Image: About arrow */}
-              <Image
-                className="w-1/5 md:w-[128px] h-auto md:h-[128px]"
-                width={128}
-                height={128}
-                alt=""
-                src="/about-arrow.png"
-              />
-            </div>
-            {/* Nested: About Us heading row 2 */}
-            <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-20">
-              {/* Text block: US heading */}
-              <h1 className="hidden md:block font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
-                US
+              <h1 className="font-1 text-4xl md:text-6xl md:text-[200px] leading-tight text-brass">
+                ←
               </h1>
-              {/* Image: Hero background */}
-              <Image
-                className="object-cover w-full lg:w-[932px] h-auto rounded-2xl"
-                width={428}
-                height={154}
-                alt=""
-                src="/aboutusimg.jpg"
-              />
-            </div>
+            </div>{" "}
           </div>
 
           {/* Nested: About Us content row 1 */}
           <div className="w-full flex flex-col md:flex-row justify-between gap-8 md:gap-20">
             {/* Text block: About description left */}
-            <div className="flex flex-col justify-around gap-8 md:gap-10">
-              <p className="text-base md:text-2xl">
-                Marrying the beauty of interior design with the strategy of
+            <div className="w-full lg:w-1/2 flex flex-col justify-around gap-8 md:gap-10">
+              <p className="text-xl md:text-2xl">
+                Merging the beauty of interior design with the strategy of
                 organization, Elira transforms everyday spaces into sanctuaries.
-              </p>
-              <p className="text-base md:text-2xl">
                 Elira is for people who want their homes or offices to feel just
                 as put-together as a hotel room.
               </p>
@@ -146,10 +143,10 @@ export default function Home() {
             {/* Image: About image right */}
             <Image
               className="w-full md:w-1/2 rounded-2xl"
-              width={594}
+              width={432}
               height={145}
               alt=""
-              src="/test1.png"
+              src="/img3.jpg"
             />
           </div>
 
@@ -158,19 +155,23 @@ export default function Home() {
             {/* Image: About image left */}
             <Image
               className="w-full md:w-1/2 rounded-2xl md:h-1/4 object-contain"
-              width={423}
+              width={432}
               height={174}
               alt=""
-              src="/test3.png"
+              src="/img4.jpg"
             />
             {/* Text block: About description right */}
             <div className="flex flex-col justify-around gap-8 md:gap-10">
-              <p className="text-base md:text-2xl">
-                When your space is clear, your mind is clear.{" "}
+              <p className="text-xl md:text-2xl">
+                We marry design thinking with organisation strategy to transform
+                everyday spaces into enjoyable, easy to maintain environments.
+                Whether you are settling into a new home, decluttering your
+                space, or organising an office - Elira helps you make room for
+                what matters.
               </p>
-              <p className="text-base md:text-2xl">
-                And when your mind is clear, everything else moves quicker and
-                easier.
+              <p className="text-xl md:text-2xl">
+                Because when your space is clear, your mind is clear. And when
+                your mind is clear, everything else moves quicker and easier.
               </p>
             </div>
           </div>
@@ -179,10 +180,10 @@ export default function Home() {
           <div className="w-full flex flex-col md:flex-row justify-between gap-8 md:gap-20">
             {/* Text block: Founder info */}
             <div className="w-full flex flex-col">
-              <h1 className="font-1 text-brass text-4xl md:text-[92px] lg:text-[128px] leading-tight md:leading-[92px] lg:leading-[128px] h-full">
+              <h1 className="font-1 text-brass text-5xl md:text-[92px] lg:text-[128px] leading-tight md:leading-[92px] lg:leading-[128px] h-full">
                 MEET THE FOUNDER
               </h1>
-              <p className="text-base md:text-2xl">
+              <p className="h-full text-xl md:text-2xl">
                 Soniru has always had an eye for order - From a young age, she
                 found deep satisfaction in making spaces feel clean,
                 put-together, and thoughtfully arranged.
@@ -194,7 +195,7 @@ export default function Home() {
               width={594}
               height={154}
               alt=""
-              src="/herobg.jpg"
+              src="/founder.jpg"
             />
           </div>
         </section>
@@ -202,23 +203,23 @@ export default function Home() {
         {/* Our Services section */}
         <section
           id="our-services"
-          className="text-left text-2xl py-30 text-white font-3 flex flex-col gap-10 bg-coffee px-5 md:px-20 lg:px-40"
+          className="text-left text-2xl py-10 md:py-30 text-coffee font-3 flex flex-col gap-5 md:gap-10 bg-background px-5 md:px-20 lg:px-20"
         >
           {/* Nested: Our Services header row */}
           <div className="flex flex-row justify-between pt-5 md:pt-10 lg:pt-16">
             {/* Text block: OUR SERVICES heading */}
-            <h1 className="font-1 text-4xl md:text-6xl lg:text-[92px] leading-tight text-brass">
+            <h1 className="font-1 text-4xl md:text-6xl lg:text-[92px] leading-tight text-maroon">
               OUR SERVICES
             </h1>
             {/* Text block: Arrow */}
-            <h1 className="font-1 text-4xl md:text-6xl lg:text-[92px] leading-tight text-brass">
+            <h1 className="font-1 text-4xl md:text-6xl lg:text-[92px] leading-tight text-maroon">
               ←
             </h1>
           </div>
           {/* Nested: Our Services content row */}
           <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16 lg:gap-20">
             {/* Text block and image left */}
-            <div className="flex flex-col justify-between w-full md:w-1/2 gap-8 md:gap-10 text-base md:text-xl lg:text-2xl">
+            <div className="flex flex-col justify-between w-full md:w-1/2 gap-8 md:gap-10 text-xl md:text-xl lg:text-2xl">
               <p>
                 We create systems that would prevent future clutter. The kind
                 that makes a space feel light, breathable, and easy to maintain.
@@ -229,7 +230,7 @@ export default function Home() {
                 width={621}
                 height={387}
                 alt=""
-                src="/servicesimg.png"
+                src="/img6.jpg"
               />
             </div>
             {/* Text block right with service details */}
@@ -269,37 +270,121 @@ export default function Home() {
               </div>
               <div>
                 <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
-Pantry & Kitchen Organization                </h2>
+                  Pantry & Kitchen Organization{" "}
+                </h2>
                 <p>
-                  Clear labeling, product arrangement, and easy-to-
-maintain systems
+                  Clear labeling, product arrangement, and easy-to- maintain
+                  systems
                 </p>
               </div>
               <div>
                 <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
-Styling & Aesthetic Enhancement               </h2>
+                  Styling & Aesthetic Enhancement{" "}
+                </h2>
                 <p>
-                  Visual upgrades, product placement, and adding
-finishing touches to elevate your space
+                  Visual upgrades, product placement, and adding finishing
+                  touches to elevate your space
                 </p>
               </div>
               <div>
                 <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
-Interior Styling Consultation             </h2>
+                  Interior Styling Consultation{" "}
+                </h2>
                 <p>
-                 Moodboards, color palettes, or 3D renderings
-for clients seeking a visual makeover
+                  Moodboards, color palettes, or 3D renderings for clients
+                  seeking a visual makeover
                 </p>
               </div>
               <div>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">Maintenance Visits 
-          </h2>
-              <p>
-                 Monthly or quarterly check-ins to refresh and
-reorganize your space
+                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                  Maintenance Visits
+                </h2>
+                <p>
+                  Monthly or quarterly check-ins to refresh and reorganize your
+                  space
                 </p>
               </div>
-             
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="our-process"
+          className="bg-coffee px-5 md:px-20 xl:h-[1000px] py-20"
+        >
+          <div className="h-1/4">
+            <div className=" flex flex-row justify-between pt-5 md:pt-10 lg:pt-16">
+              {/* Text block: OUR PROCESS heading */}
+              <h1 className="text-brass font-1 text-4xl md:text-6xl lg:text-[92px] leading-tight text-white">
+                OUR PROCESS
+              </h1>
+              {/* Text block: Arrow */}
+              <h1 className="text-brass font-1 text-4xl md:text-6xl lg:text-[92px] leading-tight text-white">
+                ←
+              </h1>
+            </div>
+          </div>
+          <div className="h-3/4 grid grid-cols-1 grid-rows-6 md:grid-cols-3 md:grid-rows-2 gap-10 items-start pt-10">
+            <div className="flex flex-col h-full items-start gap-[9px]">
+              <h1 className="text-brass font-2 text-2xl">
+                1. Initial Consultation
+              </h1>
+              <p className="text-white font-3 text-xl">
+                We start with a virtual or in-person consultation to understand
+                your needs, assess your space, and identify problem areas.
+              </p>
+            </div>
+            <div className="flex flex-col items-start justify-end gap-[9px]">
+              <h1 className="text-brass font-2 text-2xl">
+                2. Space Walkthrough & Assessment
+              </h1>
+              <p className="text-white font-3 text-xl">
+                We evaluate the layout, function, and goals of your space, and
+                take necessary measurements or visual notes.
+              </p>
+            </div>
+            <div className="flex flex-col h-full items-start gap-[9px]">
+              <h1 className="text-brass font-2 text-2xl">
+                3. Customised Plan{" "}
+              </h1>
+              <p className="text-white font-3 text-xl">
+                Based on your space and goals, we design a tailored plan with
+                suggested zones, recommended systems, styling ideas, and
+                decluttering steps.
+              </p>
+            </div>
+
+            <div className="flex flex-col items-start justify-end gap-[9px]">
+              <h1 className="text-brass font-2 text-2xl">
+                4. Transformation Day(s)
+              </h1>
+              <p className="text-white font-3 text-xl">
+                We come in to execute the organization and styling. This may
+                involve sorting, decluttering, styling, labelling, and product
+                placement. You can choose to be present or let us handle it
+                fully.
+              </p>
+            </div>
+
+            <div className="flex flex-col h-fullitems-start gap-[9px]">
+              <h1 className="text-brass font-2 text-2xl">
+                5. Styling & Upgrades
+              </h1>
+              <p className="text-white font-3 text-xl">
+                (Optional) For clients who want more than organizing, we offer
+                space upgrades such as minor renovations, design moodboards, or
+                3D visualizations.
+              </p>
+            </div>
+            <div className="flex flex-col  items-start justify-end gap-[9px]">
+              <h1 className="text-brass font-2 text-2xl">
+                6. Reveal & Aftercare
+              </h1>
+              <p className="text-white font-3 text-xl">
+                We walk you through the finished space and show you how to
+                maintain it. Aftercare support is available for 1 week
+                post-project.
+              </p>
             </div>
           </div>
         </section>
@@ -307,7 +392,7 @@ reorganize your space
         {/* Our Projects section */}
         <section
           id="our-projects"
-          className="hidden text-left py-30 text-maroon md:flex flex-col gap-8 md:gap-12 lg:gap-20 md:px-20 lg:px-40"
+          className="hidden text-left py-30 text-maroon flex-col gap-8 md:gap-12 lg:gap-20 md:px-20 lg:px-40"
         >
           {/* Nested: Our Projects header row */}
           <div className="flex flex-row justify-center md:justify-between gap-8 md:gap-10">
@@ -339,12 +424,12 @@ reorganize your space
         {/* Testimonials section */}
         <section
           id="testimonials"
-          className="min-h-[800px] md:h-[832px] text-left py-30 flex flex-col-reverse md:flex-row gap-8 md:gap-16 px-5 md:px-20 lg:px-40"
+          className="h-full text-left pt-20 flex flex-col-reverse md:flex-row gap-8 px-5 md:px-20 lg:px-20"
         >
           {/* Nested: Carousel container */}
-          <div className="w-full flex flex-col mb-5 md:mb-0 justify-start">
+          <div className="w-full flex flex-col justify-start">
             {/* Carousel component */}
-            <div className="flex flex-col gap-5 items-center px-[30px]">
+            <div className="flex flex-col gap-5 items-start ">
               <div
                 className="w-full max-w-[628px] h-[300px] md:h-[450px] lg:h-[551px] bg-coffee rounded-3xl flex items-center justify-center"
                 style={{
@@ -352,61 +437,39 @@ reorganize your space
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
-              ></div>
-              <div className="w-full flex flex-row justify-center md:justify-start gap-5">
-                <div
-                  className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-coffee text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-[20px] cursor-pointer"
-                  onClick={() =>
-                    setCarouselIndex((prev) =>
-                      prev === 0 ? carouselImages.length - 1 : prev - 1
-                    )
-                  }
-                  aria-label="Previous Slide"
-                >
-                  ←
-                </div>
-                <div
-                  className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-coffee text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-[20px] cursor-pointer"
-                  onClick={() =>
-                    setCarouselIndex((prev) =>
-                      prev === carouselImages.length - 1 ? 0 : prev + 1
-                    )
-                  }
-                  aria-label="Next Slide"
-                >
-                  →
+              >
+                <div className="w-full inset-y-0 left-0 right-0 flex items-center justify-between px-4 pointer-events-none">
+                  <div
+                    className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-black/30 text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-full cursor-pointer pointer-events-auto"
+                    onClick={() =>
+                      setCarouselIndex((prev) =>
+                        prev === 0 ? carouselImages.length - 1 : prev - 1
+                      )
+                    }
+                    aria-label="Previous Slide"
+                  >
+                    ←
+                  </div>
+                  <div
+                    className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-black/30 text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-full cursor-pointer pointer-events-auto"
+                    onClick={() =>
+                      setCarouselIndex((prev) =>
+                        prev === carouselImages.length - 1 ? 0 : prev + 1
+                      )
+                    }
+                    aria-label="Next Slide"
+                  >
+                    →
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           {/* Nested: Testimonials component positioned absolutely on desktop */}
-          <div className="md:absolute md:mt-[274px] md:ml-[480px]">
-            <div className="w-full md:w-[700px] md:h-[374px] bg-background rounded-3xl p-[30px] text-white flex flex-col md:flex-row gap-20">
-              <div className="w-[300px] h-[374px] bg-coffee rounded-2xl px-[28px] flex flex-col justify-evenly">
-                <div className="font-3 text-[24px]">
-                  Working with Soniru and seeing her attention to detail really
-                  impressed me.
-                </div>
-                <div>
-                  <p className="font-3 text-[24px]">Jane Doe</p>
-                  <p className="font-3 text-[16px]">Architect</p>
-                </div>
-              </div>
-              <div className="w-[300px] h-[374px] bg-coffee rounded-2xl px-[28px] flex flex-col justify-evenly">
-                <div className="font-3 text-[24px]">
-                  Working with Soniru and seeing her attention to detail really
-                  impressed me.
-                </div>
-                <div>
-                  <p className="font-3 text-[24px]">Jane Doe</p>
-                  <p className="font-3 text-[16px]">Architect</p>
-                </div>
-              </div>
-            </div>{" "}
-          </div>
+
           {/* Nested: Testimonials header container */}
-          <div className="w-full md:w-1/2">
-            <div className="flex flex-col justify-start items-center h-full">
+          <div className="w-full h-full flex flex-col gap-5 xl:gap-10">
+            <div className="flex flex-col justify-start lg:items-center h-1/3">
               {/* Text block: TESTIMONIALS heading */}
               <h1 className="font-1 text-6xl lg:text-[92px] text-maroon">
                 TESTIMONIALS
@@ -416,11 +479,25 @@ reorganize your space
                 from our clients
               </p>
             </div>
+            <div className=" xl:px-10">
+              <div className=" w-full lg:w-1/2 h-full text-white flex flex-col pb-5 border-0 border-b-1 border-b-red-950">
+                <div className="w-full h-full text-maroon  flex flex-col justify-evenly">
+                  <div className="font-3 text-[24px]">
+                    Working with Soniru and seeing her attention to detail
+                    really impressed me.
+                  </div>
+                  <div>
+                    <p className="font-3 text-[24px]">Jane Doe</p>
+                    <p className="font-3 text-[16px]">Architect</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* Consultation booking section */}
-        <section className="bg-coffee h-full my-10 md:my-20 px-5 md:px-10 lg:px-30 py-10 md:py-20 flex flex-col gap-5 mx-5 md:mx-10 lg:mx-20">
+        <section className="hidden bg-coffee h-full my-10 md:my-20 px-5 md:px-10 lg:px-30 py-10 md:py-20 flex-col gap-5 mx-5 md:mx-10 lg:mx-20">
           {/* Text block: Booking heading */}
           <h1 className="font-2 text-3xl md:text-4xl lg:text-4xl w-full text-center text-white">
             Book a consultation today to get started.
@@ -437,14 +514,12 @@ reorganize your space
       {/* Contact Us section */}
       <section
         id="contact"
-        className="w-full h-full bg-[url('/herobg.jpg')] bg-cover mt-30 px-5 md:px-10 lg:px-20 py-10 md:py-20"
+        className="w-full h-full bg-[url('/img1.jpg')] bg-cover mt-30 px-5 md:px-10 lg:px-20 py-10 md:py-20"
       >
-        {/* Nested: Contact Us main container */}
         <div className="w-full h-full py-10 bg-maroon flex flex-col md:flex-row font-3 text-white">
-          {/* Nested: Contact info left column */}
+          {/* Contact Info */}
           <div className="w-full md:w-1/2 flex flex-col justify-between gap-5 md:gap-10 px-5 md:px-10 lg:px-20 py-10 md:py-20">
-            {/* Text block: Contact header and description */}
-            <div className="flex flex-col justify-start gap-5 ">
+            <div className="flex flex-col justify-start gap-5">
               <h1 className="font-2 text-3xl md:text-4xl lg:text-[48px] w-2/3">
                 Get In Touch With Us
               </h1>
@@ -454,95 +529,87 @@ reorganize your space
                 consultations.
               </p>
             </div>
-            {/* Text block: Contact phone and email */}
             <div className="w-1/2">
               <p className="font-3 text-base md:text-lg lg:text-xl">
-                +234 000 1111 222
+                +234 704 5313 373
               </p>
               <p className="font-3 text-base md:text-lg lg:text-xl">
-                elirabysoniru@gmail.com
+                tryelira@gmail.com{" "}
               </p>
             </div>
           </div>
-          {/* Nested: Contact form right column */}
+
+          {/* Contact Form */}
           <div className="w-full md:w-1/2 flex flex-col justify-center gap-5 text-base md:text-lg lg:text-xl px-5 md:px-10 lg:px-20">
-            <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
-              {/* Nested: Form fields grid */}
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="flex flex-col gap-5"
+            >
               <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-x-8 gap-y-2 items-start">
-                {/* Text block and input: First Name */}
                 <div>
                   <p>First Name</p>
                   <input
                     className="w-full h-[24px] bg-brass text-white placeholder-gray outline-none border-none px-2 py-4 text-lg"
                     type="text"
-                    name="firstName"
+                    {...register("firstName")}
                     required
                     placeholder="Enter your first name"
-                    value={form.firstName}
-                    onChange={handleChange}
+                    id="firstName"
                   />
                 </div>
-                {/* Text block and input: Last Name */}
                 <div>
                   <p>Last Name</p>
                   <input
                     className="w-full h-[24px] bg-brass text-white placeholder-grey outline-none border-none  px-2 py-4 text-lg"
                     type="text"
-                    name="lastName"
+                    {...register("lastName")}
                     required
                     placeholder="Enter your last name"
-                    value={form.lastName}
-                    onChange={handleChange}
+                    id="lastName"
                   />
                 </div>
-                {/* Text block and input: Phone Number */}
                 <div>
                   <p>Phone Number</p>
                   <input
-                    className="w-full h-[24px] bg-brass text-white  placeholder-gray outline-none border-none  px-2 py-4 text-lg"
+                    className="w-full h-[24px] bg-brass text-white placeholder-gray outline-none border-none  px-2 py-4 text-lg"
                     type="tel"
-                    name="phone"
+                    {...register("phone")}
                     required
                     placeholder="Enter your phone"
-                    value={form.phone}
-                    onChange={handleChange}
+                    id="phone"
                   />
                 </div>
-                {/* Text block and input: Email */}
                 <div>
                   <p>Email</p>
                   <input
                     className="w-full h-[24px] bg-brass text-white placeholder-gray outline-none border-none text-lg px-2 py-4"
                     type="email"
-                    name="email"
+                    {...register("email")}
                     required
                     placeholder="Enter your email"
-                    value={form.email}
-                    onChange={handleChange}
+                    id="email"
                   />
                 </div>
               </div>
-              {/* Nested: Message field */}
               <div className="w-full">
-                <div>
-                  <p>Message</p>
-                  <textarea
-                    className="w-full h-[72px] bg-brass text-white placeholder-gray outline-none border-none text-lg p-2"
-                    name="message"
-                    required
-                    placeholder="Enter your message"
-                    value={form.message}
-                    onChange={handleChange}
-                  />
-                </div>
+                <p>Message</p>
+                <textarea
+                  className="w-full h-[72px] bg-brass text-white placeholder-gray outline-none border-none text-lg p-2"
+                  {...register("message")}
+                  required
+                  placeholder="Enter your message"
+                  id="message"
+                />
               </div>
-              {/* Nested: Submit button */}
               <div className="w-full">
                 <button
                   type="submit"
-                  className="w-full text-maroon text-sm md:text-base lg:text-lg py-[12px] bg-background px-10 md:px-20 lg:px-40 flex justify-center"
+                  disabled={loading}
+                  className={`w-full text-maroon text-sm md:text-base lg:text-lg py-[12px] px-10 md:px-20 lg:px-40 flex justify-center ${
+                    loading ? "opacity-70 cursor-not-allowed" : "bg-background"
+                  }`}
                 >
-                  Submit
+                  {loading ? "Sending..." : "Submit"}
                 </button>
               </div>
             </form>

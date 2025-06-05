@@ -59,7 +59,7 @@ export default function Bookings() {
                 <p className="font-3 text-base md:text-lg lg:text-xl">Kindly select the time and date you’d like to book your consultation for, and the service you’re interested in. See the calendar below for available slots.</p>
                 <div className=" h-full rounded-lg shadow-md flex justify-center items-center ">
             <iframe
-              src="https://calendar.google.com/calendar/embed?src=b6736b821d7c6d715db459c1da5d528d2b098e776f6eeb8dc83abcd325860d82%40group.calendar.google.com&ctz=Africa%2FLagos"
+              src="https://calendar.google.com/calendar/embed?src=e5a468c94dae7318724cec152634f2241867c0d36171163a89a5edac1891ba49%40group.calendar.google.com&ctz=Africa%2FLagos"
               style={{ border: 0 }}
               width="500"
               height="300"
