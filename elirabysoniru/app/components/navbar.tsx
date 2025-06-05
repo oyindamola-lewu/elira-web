@@ -8,7 +8,7 @@ const Navbar: NextPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 z-50 w-full bg-background flex flex-col items-center justify-start lg:pt-5 pb-5 box-border gap-[30px] text-center text-2xl text-maroon px-10 md:px-20">
+    <div className="sticky top-0 z-50 w-full bg-background flex flex-col items-center justify-start  lg:pt-2 pb-3 box-border gap-[30px] text-center text-2xl text-maroon px-10 md:px-20">
       
       {/* Logo and Menu Toggle */}
       <div className="self-stretch flex flex-row items-center justify-between gap-0 font-3">
@@ -27,15 +27,25 @@ const Navbar: NextPage = () => {
 
       {/* Conditional Menu Links */}
       {menuOpen && (
-  <div className="w-full grid grid-cols-1 grid-rows-7 md:grid-cols-3 md:grid-rows-3 lg:grid-cols-4 lg:grid-rows-2 gap-x-8 gap-y-4 font-2 text-left">
-    <div>Home</div>
-    <div>About Us</div>
-    <div>Portfolio</div>
-    <div>The Process</div>
-    <div>Services</div>
-    <div>Testimonials</div>
-    <div>Contact Us</div>
-    <div></div>
+  <div className="w-full grid grid-cols-1 grid-rows-7 md:grid-cols-4 md:grid-rows-2 lg:grid-cols-5 lg:grid-rows-2 gap-x-8 gap-y-4 font-2 text-left">
+    
+     <Link href={"#about-us"}>
+          About Us
+        </Link>
+ <Link href={"#our-services"}>
+          Our Services
+        </Link>     <Link href={"#our-services"}>
+          Our Process
+        </Link>
+         <Link className='hidden' href={"#our-proccess"}>
+          Our Projects
+        </Link>
+ <Link href={"#testimonials"}>
+          Testimonials
+        </Link>    
+ <Link href={"#contact"}>
+          Contact Us
+        </Link>    <div></div>
   </div>
 )}
     </div>
