@@ -107,7 +107,7 @@ export default function Home() {
         {/* About Us section */}
         <section
           id="about-us"
-          className="w-full relative bg-coffee overflow-y-auto flex flex-col gap-5 md:gap-15 items-start justify-center box-border text-left text-white font-3 md:py-30 pb-10 px-5 md:px-20"
+          className="w-full relative bg-coffee overflow-y-auto flex flex-col gap-5 md:gap-15 items-start justify-center box-border text-left text-white font-3 py-10 md:py-30 pb-10 px-5 md:px-20"
         >
           {/* Nested: About Us main container */}
           <div className="w-full">
