@@ -53,7 +53,6 @@ export default function Home() {
   return (
     // Main page wrapper
     <div className="bg-background">
-
       {/* Navbar component */}
       <Navbar />
       <main className="">
@@ -107,7 +106,7 @@ export default function Home() {
         {/* About Us section */}
         <section
           id="about-us"
-          className="w-full relative bg-coffee overflow-y-auto flex flex-col gap-5 md:gap-15 items-start justify-center box-border text-left text-white font-3 py-10 md:py-30 pb-10 px-5 md:px-20"
+          className="w-full relative bg-coffee overflow-y-auto flex flex-col gap-8 md:gap-5 items-start justify-center box-border text-left text-white font-3 py-10 md:py-30 pb-10 px-5 md:px-20"
         >
           {/* Nested: About Us main container */}
           <div className="w-full">
@@ -115,15 +114,15 @@ export default function Home() {
             <div className=" flex flex-row md:flex-row items-center justify-between gap-8 md:gap-20  ">
               {/* Text block: ABOUT heading */}
               <div className="flex flex-row gap-5 md:gap-10">
-                <h1 className="font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
+                <h1 className="font-1 text-brass text-6xl md:text-[128px] leading-tight h-full">
                   ABOUT
                 </h1>
-                <h1 className="block font-1 text-brass text-6xl md:text-[200px] leading-tight md:leading-[180px] h-full">
+                <h1 className="block font-1 text-brass text-6xl md:text-[128px] leading-tight  h-full">
                   US
                 </h1>
               </div>
               {/* Image: About arrow */}
-              <h1 className="font-1 text-4xl md:text-6xl md:text-[200px] leading-tight text-brass">
+              <h1 className="font-1 text-4xl md:text-6xl md:text-[128px] leading-tight text-brass">
                 ←
               </h1>
             </div>{" "}
@@ -132,12 +131,14 @@ export default function Home() {
           {/* Nested: About Us content row 1 */}
           <div className="w-full flex flex-col md:flex-row justify-between gap-8 md:gap-20">
             {/* Text block: About description left */}
-            <div className="w-full lg:w-1/2 flex flex-col justify-around gap-8 md:gap-10">
+            <div className="w-full lg:w-1/2 flex flex-col justify-evenly gap-8 md:gap-10">
               <p className="text-xl md:text-2xl">
                 Merging the beauty of interior design with the strategy of
                 organization, Elira transforms everyday spaces into sanctuaries.
-                Elira is for people who want their homes or offices to feel just
-                as put-together as a hotel room.
+              </p>
+              <p className="text-xl md:text-2xl">
+                We marry design thinking with organisation strategy to transform
+                everyday spaces into enjoyable, easy to maintain environments.
               </p>
             </div>
             {/* Image: About image right */}
@@ -161,10 +162,8 @@ export default function Home() {
               src="/img4.jpg"
             />
             {/* Text block: About description right */}
-            <div className="flex flex-col justify-around gap-8 md:gap-10">
+            <div className="flex flex-col justify-evenly gap-8 md:gap-10">
               <p className="text-xl md:text-2xl">
-                We marry design thinking with organisation strategy to transform
-                everyday spaces into enjoyable, easy to maintain environments.
                 Whether you are settling into a new home, decluttering your
                 space, or organising an office - Elira helps you make room for
                 what matters.
@@ -176,18 +175,45 @@ export default function Home() {
             </div>
           </div>
 
+          <div className="w-full my-10 h-0.5 bg-white/20"></div>
+
           {/* Nested: Meet the Founder section */}
-          <div className="w-full flex flex-col md:flex-row justify-between gap-8 md:gap-20">
+          <div className="w-full flex flex-col md:flex-row justify-center gap-8 md:gap-20">
             {/* Text block: Founder info */}
             <div className="w-full flex flex-col">
-              <h1 className="font-1 text-brass text-5xl md:text-[92px] lg:text-[128px] leading-tight md:leading-[92px] lg:leading-[128px] h-full">
-                MEET THE FOUNDER
-              </h1>
-              <p className="h-full text-xl md:text-2xl">
-                Soniru has always had an eye for order - From a young age, she
-                found deep satisfaction in making spaces feel clean,
-                put-together, and thoughtfully arranged.
-              </p>
+              <div className="flex flex-row justify-between ">
+                {/* Text block: OUR SERVICES heading */}
+                <h1 className="font-1 text-6xl lg:text-[128px] text-left leading-tight text-brass pb-8">
+                  MEET OUR FOUNDER
+                </h1>
+                <h1 className="font-1 text-6xl lg:text-[128px] text-left leading-tight text-brass pb-8">
+                  ✶
+                </h1>
+              </div>
+              <div className="h-full flex flex-col gap-8">
+                <p className="h-full text-xl md:text-2xl">
+                  Elira was born from my love for intentional living and
+                  beautiful spaces. With a background in architecture and a
+                  passion for design, I saw how clutter-free, well-curated
+                  environments could change not just how a space looks, but how
+                  it feels.
+                </p>
+                <p className="h-full text-xl md:text-2xl">
+                  After years of designing functional structures, managing
+                  projects, and curating visual experiences, I launched Elira to
+                  offer more than just organisation — we offer lifestyle
+                  transformation. Our approach is thoughtful, personal, and
+                  deeply rooted in helping you find peace, clarity, and joy in
+                  your everyday spaces.
+                </p>
+                <p className="h-full text-xl md:text-2xl">
+                  Through Elira, I combine structure and soul — creating
+                  environments that are truly lived in.
+                </p>
+                <p className="h-full text-xl md:text-2xl">
+                  Hi, I’m Soniru, and you’re Welcome to Elira.
+                </p>
+              </div>
             </div>
             {/* Image: Founder image */}
             <Image
@@ -203,23 +229,23 @@ export default function Home() {
         {/* Our Services section */}
         <section
           id="our-services"
-          className="text-left text-2xl py-10 md:py-30 text-coffee font-3 flex flex-col gap-5 md:gap-10 bg-background px-5 md:px-20 lg:px-20"
+          className="text-left text-xl py-10 md:py-30 text-coffee font-3 flex flex-col gap-5 md:gap-10 bg-background px-5 md:px-20 lg:px-20"
         >
           {/* Nested: Our Services header row */}
           <div className="flex flex-row justify-between pt-5 md:pt-10 lg:pt-16">
             {/* Text block: OUR SERVICES heading */}
-            <h1 className="font-1 text-4xl md:text-6xl lg:text-[92px] leading-tight text-maroon">
+            <h1 className="font-1 text-5xl lg:text-[128px] leading-tight text-maroon">
               OUR SERVICES
             </h1>
             {/* Text block: Arrow */}
-            <h1 className="font-1 text-4xl md:text-6xl lg:text-[92px] leading-tight text-maroon">
+            <h1 className="font-1 text-5xl lg:text-[128px] leading-tight text-maroon">
               ←
             </h1>
           </div>
           {/* Nested: Our Services content row */}
           <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16 lg:gap-20">
             {/* Text block and image left */}
-            <div className="flex flex-col justify-between w-full md:w-1/2 gap-8 md:gap-10 text-xl md:text-xl lg:text-2xl">
+            <div className="flex flex-col justify-between w-full md:w-1/2 gap-8 md:gap-10 text-xl md:text-2xl">
               <p>
                 We create systems that would prevent future clutter. The kind
                 that makes a space feel light, breathable, and easy to maintain.
@@ -236,7 +262,7 @@ export default function Home() {
             {/* Text block right with service details */}
             <div className="overflow-scroll flex flex-col justify-between w-full md:w-1/2 gap-8 md:gap-10 h-[540px]">
               <div>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                <h2 className="text-xl md:text-2xl font-semibold">
                   Professional Home & Space Organization
                 </h2>
                 <p>
@@ -245,7 +271,7 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                <h2 className="text-xl md:text-2xl font-semibold">
                   Workspace & Office Organization
                 </h2>
                 <p>
@@ -254,13 +280,13 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                <h2 className="text-xl md:text-2xl font-semibold">
                   Move-In Organization
                 </h2>
                 <p>Unpacking, setting up organized systems</p>
               </div>
               <div>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                <h2 className="text-xl md:text-2xl font-semibold">
                   Wardrobe Curation & Closet Styling
                 </h2>
                 <p>
@@ -269,7 +295,7 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                <h2 className="text-xl md:text-2xl font-semibold">
                   Pantry & Kitchen Organization{" "}
                 </h2>
                 <p>
@@ -278,7 +304,7 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                <h2 className="text-xl md:text-2xl  font-semibold">
                   Styling & Aesthetic Enhancement{" "}
                 </h2>
                 <p>
@@ -287,7 +313,7 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                <h2 className="text-xl md:text-2xl  font-semibold">
                   Interior Styling Consultation{" "}
                 </h2>
                 <p>
@@ -296,7 +322,7 @@ export default function Home() {
                 </p>
               </div>
               <div>
-                <h2 className="text-xl md:text-2xl lg:text-3xl font-semibold">
+                <h2 className="text-xl md:text-2xl font-semibold">
                   Maintenance Visits
                 </h2>
                 <p>
@@ -315,18 +341,18 @@ export default function Home() {
           <div className="h-1/4">
             <div className=" flex flex-row justify-between pt-5 md:pt-10 lg:pt-16">
               {/* Text block: OUR PROCESS heading */}
-              <h1 className="text-brass font-1 text-4xl md:text-6xl lg:text-[92px] leading-tight text-white">
+              <h1 className="text-brass font-1  text-5xl lg:text-[128px] leading-tight text-white">
                 OUR PROCESS
               </h1>
               {/* Text block: Arrow */}
-              <h1 className="text-brass font-1 text-4xl md:text-6xl lg:text-[92px] leading-tight text-white">
+              <h1 className="text-brass font-1  text-5xl lg:text-[128px] leading-tight text-white">
                 ←
               </h1>
             </div>
           </div>
           <div className="h-3/4 grid grid-cols-1 grid-rows-6 md:grid-cols-3 md:grid-rows-2 gap-10 items-start pt-10">
             <div className="flex flex-col h-full items-start gap-[9px]">
-              <h1 className="text-brass font-2 text-2xl">
+              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline ">
                 1. Initial Consultation
               </h1>
               <p className="text-white font-3 text-xl">
@@ -335,7 +361,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-col items-start justify-end gap-[9px]">
-              <h1 className="text-brass font-2 text-2xl">
+              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
                 2. Space Walkthrough & Assessment
               </h1>
               <p className="text-white font-3 text-xl">
@@ -344,7 +370,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-col h-full items-start gap-[9px]">
-              <h1 className="text-brass font-2 text-2xl">
+              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
                 3. Customised Plan{" "}
               </h1>
               <p className="text-white font-3 text-xl">
@@ -355,7 +381,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col items-start justify-end gap-[9px]">
-              <h1 className="text-brass font-2 text-2xl">
+              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
                 4. Transformation Day(s)
               </h1>
               <p className="text-white font-3 text-xl">
@@ -367,7 +393,7 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col h-fullitems-start gap-[9px]">
-              <h1 className="text-brass font-2 text-2xl">
+              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
                 5. Styling & Upgrades
               </h1>
               <p className="text-white font-3 text-xl">
@@ -377,7 +403,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-col  items-start justify-end gap-[9px]">
-              <h1 className="text-brass font-2 text-2xl">
+              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
                 6. Reveal & Aftercare
               </h1>
               <p className="text-white font-3 text-xl">
@@ -471,16 +497,16 @@ export default function Home() {
           <div className="w-full h-full flex flex-col gap-5 xl:gap-10">
             <div className="flex flex-col justify-start lg:items-center h-1/3">
               {/* Text block: TESTIMONIALS heading */}
-              <h1 className="font-1 text-6xl lg:text-[92px] text-maroon">
+              <h1 className="font-1 text-6xl lg:text-[128px] text-maroon">
                 TESTIMONIALS
               </h1>
               {/* Text block: Subtitle */}
-              <p className="font-3 text-maroon text-base md:text-xl leading-tight md:leading-[26px]">
+              <p className="font-3 text-maroon text-xl md:text-2xl leading-tight md:leading-[26px]">
                 from our clients
               </p>
             </div>
-            <div className=" xl:px-10">
-              <div className=" w-full lg:w-1/2 h-full text-white flex flex-col pb-5 border-0 border-b-1 border-b-red-950">
+            <div className="lg:px-7 xl:px-10">
+              <div className=" w-full h-full text-white flex flex-col pb-5 border-0 border-b-1 border-b-red-950">
                 <div className="w-full h-full text-maroon  flex flex-col justify-evenly">
                   <div className="font-3 text-[24px]">
                     Working with Soniru and seeing her attention to detail
