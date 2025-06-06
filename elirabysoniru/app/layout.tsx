@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: 'Elira by Soniru',
-  description: "A world-class interior design firm based in Lagos.",
+  description: "An interior styling company based in Lagos.",
   icons: [
     {
       rel: 'icon',
