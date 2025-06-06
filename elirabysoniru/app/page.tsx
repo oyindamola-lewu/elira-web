@@ -131,14 +131,19 @@ export default function Home() {
           {/* Nested: About Us content row 1 */}
           <div className="w-full flex flex-col md:flex-row justify-between gap-8 md:gap-20">
             {/* Text block: About description left */}
-            <div className="w-full lg:w-1/2 flex flex-col justify-evenly gap-8 md:gap-10">
+            <div className="w-full lg:w-1/2 flex flex-col gap-8 md:gap-10">
               <p className="text-xl md:text-2xl">
-                Merging the beauty of interior design with the strategy of
-                organization, Elira transforms everyday spaces into sanctuaries.
+                Elira, meaning &apos;to be free&apos; exists to create rest through structure. We
+                believe that an organized space is the foundation for a clearer
+                mind and a more intentional life.
               </p>
               <p className="text-xl md:text-2xl">
-                We marry design thinking with organisation strategy to transform
-                everyday spaces into enjoyable, easy to maintain environments.
+                Merging the beauty of interior design with the strategy of
+                organization, Elira transforms everyday spaces into functional,
+                beautiful sanctuaries. By marrying design thinking with
+                organization strategy, we create enjoyable, easy-to-maintain
+                environments that bring clarity, calm, and efficiency to your
+                life.
               </p>
             </div>
             {/* Image: About image right */}
@@ -164,13 +169,13 @@ export default function Home() {
             {/* Text block: About description right */}
             <div className="flex flex-col justify-evenly gap-8 md:gap-10">
               <p className="text-xl md:text-2xl">
-                Whether you are settling into a new home, decluttering your
-                space, or organising an office - Elira helps you make room for
-                what matters.
+                Whether you are settling into a new home, decluttering a
+                lived-in space, or organizing a busy office, Elira helps you
+                make room for what truly matters.
               </p>
               <p className="text-xl md:text-2xl">
                 Because when your space is clear, your mind is clear. And when
-                your mind is clear, everything else moves quicker and easier.
+                your mind is clear, everything else moves easier.
               </p>
             </div>
           </div>
