@@ -5,7 +5,7 @@ import Link from "next/link";
 import Project1 from "./project-summaries/project1";
 import Project2 from "./project-summaries/project2";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 type FormData = {
@@ -50,6 +50,34 @@ export default function Home() {
     }
   };
 
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  const testimonials = [
+    {
+      text: "Working with Elira was a game-changer for my wardrobe. Their attention to detail, creativity, and professionalism exceeded my expectations. I'd recommend them to anyone looking for quality, professionalism and perfection.",
+      name: "Idara",
+      location: "Lagos, Nigeria"
+    },
+    {
+      text: "Elira transformed how I approach my personal style. Their innovative design process and meticulous execution delivered results that went beyond what I imagined possible. The seamless blend of functionality and aesthetics in every piece reflects true craftsmanship. Absolutely exceptional work.",
+      name: "Dumkene",
+      location: "Lagos, Nigeria"
+    },
+    {
+      text: "The collaboration with Elira was nothing short of remarkable. Their strategic vision, combined with flawless technical execution, created a wardrobe that perfectly aligns with my lifestyle and goals. The precision and creative problem-solving throughout the process were impressive. Outstanding service from start to finish.",
+      name: "Jessica",
+      location: "Lagos, Nigeria"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % testimonials.length);
+    }, 4000); // 4 seconds per slide
+
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
+
   return (
     // Main page wrapper
     <div className="bg-background">
@@ -77,7 +105,8 @@ export default function Home() {
                 {/* Text block: Hero description and button */}
                 <div className="w-full md:w-1/2 h-full text-white font-3 flex flex-col items-start justify-center gap-5">
                   <p className="text-2xl md:text-4xl w-4/5">
-                    Decluttering & interior styling for busy professionals.
+                    Luxury Space Curation & Professional Organizing for Those
+                    Who Expect More.
                   </p>
                   {/* Nested: Consultation button */}
                   <Link
@@ -133,17 +162,14 @@ export default function Home() {
             {/* Text block: About description left */}
             <div className="w-full lg:w-1/2 flex flex-col gap-8 md:gap-10">
               <p className="text-xl md:text-2xl">
-                Elira, meaning &apos;to be free&apos; exists to create rest through structure. We
-                believe that an organized space is the foundation for a clearer
-                mind and a more intentional life.
+                Elira, meaning &apos;to be free&apos; exists to transform how
+                you live in your space. We create purposeful calm through
+                strategic curation and thoughtful design touches that feel
+                worthy of you.
               </p>
               <p className="text-xl md:text-2xl">
-                Merging the beauty of interior design with the strategy of
-                organization, Elira transforms everyday spaces into functional,
-                beautiful sanctuaries. By marrying design thinking with
-                organization strategy, we create enjoyable, easy-to-maintain
-                environments that bring clarity, calm, and efficiency to your
-                life.
+                We believe a beautifully organized space isn&apos;t just
+                aesthetic — it&apos;s a system for living well.
               </p>
             </div>
             {/* Image: About image right */}
@@ -169,13 +195,13 @@ export default function Home() {
             {/* Text block: About description right */}
             <div className="flex flex-col justify-evenly gap-8 md:gap-10">
               <p className="text-xl md:text-2xl">
-                Whether you are settling into a new home, decluttering a
-                lived-in space, or organizing a busy office, Elira helps you
-                make room for what truly matters.
+                Fusing professional organizing with luxury space transformation,
+                Elira tailors every detail to your lifestyle.
               </p>
               <p className="text-xl md:text-2xl">
-                Because when your space is clear, your mind is clear. And when
-                your mind is clear, everything else moves easier.
+                From bustling family homes to refined personal offices, we build
+                structures that make your everyday easier to enjoy — and
+                impossible to overlook.
               </p>
             </div>
           </div>
@@ -197,26 +223,25 @@ export default function Home() {
               </div>
               <div className="h-full flex flex-col gap-8">
                 <p className="h-full text-xl md:text-2xl">
-                  Elira was born from my love for intentional living and
-                  beautiful spaces. With a background in architecture and a
-                  passion for design, I saw how clutter-free, well-curated
-                  environments could change not just how a space looks, but how
-                  it feels.
+                  Elira was born from a lifetime love of intentional living.
+                  With a background in architecture and years immersed in
+                  design, I saw firsthand how the way a space is structured can
+                  shape the way we live, think, and feel.
                 </p>
                 <p className="h-full text-xl md:text-2xl">
-                  After years of designing functional structures, managing
-                  projects, and curating visual experiences, I launched Elira to
-                  offer more than just organisation — we offer lifestyle
-                  transformation. Our approach is thoughtful, personal, and
-                  deeply rooted in helping you find peace, clarity, and joy in
-                  your everyday spaces.
+                  Over time, organizing stopped feeling like a chore — it became
+                  my quiet superpower. I learned that when you walk into a space
+                  that&apos;s thoughtfully arranged for your life, you move
+                  through your day with less friction and more freedom.
                 </p>
                 <p className="h-full text-xl md:text-2xl">
-                  Through Elira, I combine structure and soul — creating
-                  environments that are truly lived in.
+                  I built Elira to offer more than just tidy shelves — we craft
+                  tailored systems, style beautiful details, and transform the
+                  everyday into something that feels worthy of you. It&apos;s
+                  structure that holds your life, so you can live more fully.
                 </p>
                 <p className="h-full text-xl md:text-2xl">
-                  Hi, I’m Soniru, and you’re Welcome to Elira.
+                  I&apos;m Soniru, and you&apos;re welcome here.
                 </p>
               </div>
             </div>
@@ -265,75 +290,46 @@ export default function Home() {
               />
             </div>
             {/* Text block right with service details */}
-            <div className="overflow-scroll flex flex-col justify-between w-full md:w-1/2 gap-8 md:gap-10 h-[540px]">
+            <div className="overflow-scroll flex flex-col justify-around w-full md:w-1/2 h-[540px]">
               <div>
                 <h2 className="text-xl md:text-2xl font-semibold">
                   Professional Home & Space Organization
                 </h2>
-                <p>
-                  Decluttering and organizing homes, rooms, wardrobes, pantries,
-                  and more
-                </p>
+                <ul>
+                  <li>
+                    Decluttering and editing spaces to create calm, livable
+                    order
+                  </li>
+                  <li>
+                    Streamlined wardrobe creation and closet styling Pantry,
+                    kitchen, and utility area setups with functional product
+                    placements
+                  </li>
+                  <li>
+                    Move-in and relocation setups — unpacking, zoning, and full
+                    home resets Workspace and office organizing for maximum flow
+                    and productivity
+                  </li>
+                </ul>
               </div>
               <div>
                 <h2 className="text-xl md:text-2xl font-semibold">
-                  Workspace & Office Organization
+                  Space Transformation
                 </h2>
-                <p>
-                  Functional layout and system creation for desks, storage, and
-                  work areas
-                </p>
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-semibold">
-                  Move-In Organization
-                </h2>
-                <p>Unpacking, setting up organized systems</p>
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-semibold">
-                  Wardrobe Curation & Closet Styling
-                </h2>
-                <p>
-                  Streamlining wardrobes, creating categories, and aesthetic
-                  setups
-                </p>
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-semibold">
-                  Pantry & Kitchen Organization{" "}
-                </h2>
-                <p>
-                  Clear labeling, product arrangement, and easy-to- maintain
-                  systems
-                </p>
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl  font-semibold">
-                  Styling & Aesthetic Enhancement{" "}
-                </h2>
-                <p>
-                  Visual upgrades, product placement, and adding finishing
-                  touches to elevate your space
-                </p>
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl  font-semibold">
-                  Interior Styling Consultation{" "}
-                </h2>
-                <p>
-                  Moodboards, color palettes, or 3D renderings for clients
-                  seeking a visual makeover
-                </p>
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-semibold">
-                  Maintenance Visits
-                </h2>
-                <p>
-                  Monthly or quarterly check-ins to refresh and reorganize your
-                  space
-                </p>
+                <ul>
+                  <li>
+                    Room refreshes and re-styling for a new look without a full
+                    renovation
+                  </li>
+                  <li>
+                    Visual upgrades: mood boards, color palettes, and styling
+                    consultations
+                  </li>
+                  <li>
+                    Sourcing and placement of design touches that elevate the
+                    feel of your space
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
@@ -341,10 +337,10 @@ export default function Home() {
 
         <section
           id="our-process"
-          className="bg-coffee px-5 md:px-20 xl:h-[1000px] py-20"
+          className="bg-coffee px-5 md:px-20 xl:h-full py-15 lg:py-20 xl:py-30"
         >
           <div className="h-1/4">
-            <div className=" flex flex-row justify-between pt-5 md:pt-10 lg:pt-16">
+            <div className=" flex flex-row justify-between">
               {/* Text block: OUR PROCESS heading */}
               <h1 className="text-brass font-1  text-5xl lg:text-[128px] leading-tight text-white">
                 OUR PROCESS
@@ -355,66 +351,43 @@ export default function Home() {
               </h1>
             </div>
           </div>
-          <div className="h-3/4 grid grid-cols-1 grid-rows-6 md:grid-cols-3 md:grid-rows-2 gap-10 items-start pt-10">
+          <div className="h-3/4 grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-10 items-start pt-10">
             <div className="flex flex-col h-full items-start gap-[9px]">
               <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline ">
-                1. Initial Consultation
+                1. Consultation & Visioning
               </h1>
               <p className="text-white font-3 text-xl">
-                We start with a virtual or in-person consultation to understand
-                your needs, assess your space, and identify problem areas.
+                We start with a paid consultation — in person or virtual — to
+                understand your needs, style, and daily routines.
               </p>
             </div>
             <div className="flex flex-col items-start justify-end gap-[9px]">
               <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
-                2. Space Walkthrough & Assessment
+                2.⁠ ⁠Personalized Plan
               </h1>
               <p className="text-white font-3 text-xl">
-                We evaluate the layout, function, and goals of your space, and
-                take necessary measurements or visual notes.
+                We design a tailored plan: zones, systems, styling touches, and
+                product sourcing to bring your vision to life.
               </p>
             </div>
             <div className="flex flex-col h-full items-start gap-[9px]">
               <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
-                3. Customised Plan{" "}
+                3.⁠ ⁠Transformation & Styling
               </h1>
               <p className="text-white font-3 text-xl">
-                Based on your space and goals, we design a tailored plan with
-                suggested zones, recommended systems, styling ideas, and
-                decluttering steps.
+                Our team handles every detail — decluttering, organizing,
+                styling, and setup — so you can step back in when it’s all done.
               </p>
             </div>
 
             <div className="flex flex-col items-start justify-end gap-[9px]">
               <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
-                4. Transformation Day(s)
+                4. ⁠Reveal & Ongoing Care
               </h1>
               <p className="text-white font-3 text-xl">
-                We come in to execute the organization and styling. This may
-                involve sorting, decluttering, styling, labelling, and product
-                placement. You can choose to be present or let us handle it
-                fully.
-              </p>
-            </div>
-
-            <div className="flex flex-col h-fullitems-start gap-[9px]">
-              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
-                5. Styling & Upgrades
-              </h1>
-              <p className="text-white font-3 text-xl">
-                (Optional) For clients who want more than organizing, we offer
-                space upgrades such as minor renovations, design moodboards, or
-                3D visualizations.
-              </p>
-            </div>
-            <div className="flex flex-col  items-start justify-end gap-[9px]">
-              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
-                6. Reveal & Aftercare
-              </h1>
-              <p className="text-white font-3 text-xl">
-                We walk you through the finished space and show you how to
-                maintain it. Aftercare support is available for 1 week
-                post-project.
+                We reveal your refreshed space and guide you on maintaining it.
+                Seasonal refresh visits are available for clients who want
+                long-term care.
               </p>
             </div>
           </div>
@@ -510,20 +483,44 @@ export default function Home() {
                 from our clients
               </p>
             </div>
-            <div className="lg:px-7 xl:px-10">
-              <div className=" w-full h-full text-white flex flex-col pb-5 border-0 border-b-1 border-b-red-950">
-                <div className="w-full h-full text-maroon  flex flex-col justify-evenly">
-                  <div className="font-3 text-[24px]">
-                    Working with Soniru and seeing her attention to detail
-                    really impressed me.
-                  </div>
-                  <div>
-                    <p className="font-3 text-[24px]">Oyindamola Lewu</p>
-                    <p className="font-3 text-[16px]">Lagos, Nigeria</p>
-                  </div>
+ <div className="w-full h-[420px] md:h-[300px] overflow-hidden relative">
+      {testimonials.map((testimonial, index) => (
+        <div
+          key={index}
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            index === currentSlide ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <div className="lg:px-7 xl:px-10 h-full">
+            <div className="w-full h-full text-white flex flex-col pb-5 border-0 border-b-1 border-b-red-950">
+              <div className="w-full h-full text-red-900 flex flex-col justify-evenly">
+                <div className="font-3 text-[24px]">
+                  {testimonial.text}
+                </div>
+                <div>
+                  <p className="font-3 text-[24px]">{testimonial.name}</p>
+                  <p className="font-3 text-[16px]">{testimonial.location}</p>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      ))}
+      
+      {/* Progress indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+        {testimonials.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentSlide(index)}
+            className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+              index === currentSlide ? 'bg-red-900' : 'bg-red-300'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
           </div>
         </section>
 
