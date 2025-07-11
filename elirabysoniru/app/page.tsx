@@ -483,7 +483,7 @@ export default function Home() {
                 from our clients
               </p>
             </div>
- <div className="w-full h-[420px] md:h-[300px] overflow-hidden relative">
+ <div className="w-full h-[420px] md:h-[320px] overflow-hidden relative">
       {testimonials.map((testimonial, index) => (
         <div
           key={index}
