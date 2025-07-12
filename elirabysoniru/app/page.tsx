@@ -169,7 +169,7 @@ export default function Home() {
               </p>
               <p className="text-xl md:text-2xl">
                 We believe a beautifully organized space isn&apos;t just
-                aesthetic — it&apos;s a system for living well.
+                aesthetic, it&apos;s a system for living well.
               </p>
             </div>
             {/* Image: About image right */}
@@ -200,7 +200,7 @@ export default function Home() {
               </p>
               <p className="text-xl md:text-2xl">
                 From bustling family homes to refined personal offices, we build
-                structures that make your everyday easier to enjoy — and
+                structures that make your everyday easier to enjoy, and
                 impossible to overlook.
               </p>
             </div>
@@ -229,13 +229,13 @@ export default function Home() {
                   shape the way we live, think, and feel.
                 </p>
                 <p className="h-full text-xl md:text-2xl">
-                  Over time, organizing stopped feeling like a chore — it became
+                  Over time, organizing stopped feeling like a chore, it became
                   my quiet superpower. I learned that when you walk into a space
                   that&apos;s thoughtfully arranged for your life, you move
                   through your day with less friction and more freedom.
                 </p>
                 <p className="h-full text-xl md:text-2xl">
-                  I built Elira to offer more than just tidy shelves — we craft
+                  I built Elira to offer more than just tidy shelves, we craft
                   tailored systems, style beautiful details, and transform the
                   everyday into something that feels worthy of you. It&apos;s
                   structure that holds your life, so you can live more fully.
@@ -297,17 +297,20 @@ export default function Home() {
                 </h2>
                 <ul>
                   <li>
-                    Decluttering and editing spaces to create calm, livable
+                    ○ Decluttering and editing spaces to create calm, livable
                     order
                   </li>
                   <li>
-                    Streamlined wardrobe creation and closet styling Pantry,
+                    ○ Streamlined wardrobe creation and closet styling Pantry,
                     kitchen, and utility area setups with functional product
                     placements
                   </li>
                   <li>
-                    Move-in and relocation setups — unpacking, zoning, and full
-                    home resets Workspace and office organizing for maximum flow
+                    ○ Move-in and relocation setups, unpacking, zoning, and full
+                    home resets 
+                  </li>
+                  <li>
+                    ○ Workspace and office organizing for maximum flow
                     and productivity
                   </li>
                 </ul>
@@ -318,15 +321,15 @@ export default function Home() {
                 </h2>
                 <ul>
                   <li>
-                    Room refreshes and re-styling for a new look without a full
+                    ○ Room refreshes and re-styling for a new look without a full
                     renovation
                   </li>
                   <li>
-                    Visual upgrades: mood boards, color palettes, and styling
+                    ○ Visual upgrades: mood boards, color palettes, and styling
                     consultations
                   </li>
                   <li>
-                    Sourcing and placement of design touches that elevate the
+                    ○ Sourcing and placement of design touches that elevate the
                     feel of your space
                   </li>
                 </ul>
@@ -357,7 +360,7 @@ export default function Home() {
                 1. Consultation & Visioning
               </h1>
               <p className="text-white font-3 text-xl">
-                We start with a paid consultation — in person or virtual — to
+                We start with a paid consultation, in person or virtual, to
                 understand your needs, style, and daily routines.
               </p>
             </div>
@@ -375,8 +378,8 @@ export default function Home() {
                 3.⁠ ⁠Transformation & Styling
               </h1>
               <p className="text-white font-3 text-xl">
-                Our team handles every detail — decluttering, organizing,
-                styling, and setup — so you can step back in when it’s all done.
+                Our team handles every detail, decluttering, organizing,
+                styling, and setup, so you can step back in when it’s all done.
               </p>
             </div>
 
