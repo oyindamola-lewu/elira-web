@@ -5,7 +5,7 @@
   --maroon: #6B0C0C;
   --brass: #A58356;
   --coffee: #322B21;
-  --font-fino-sans-title: 'Fino Sans Title';
+  --font-italiano: 'Italiano';
   --font-glacial-indifference: 'Glacial Indifference';
   --font-libre-baskerville: 'Libre Baskerville';
 }
@@ -19,13 +19,13 @@
 .text-brass { color: var(--brass); }
 .text-coffee { color: var(--coffee); }
 
-.font-1 { font-family: var(--font-fino-sans-title); }
+.font-1 { font-family: var(--font-italiano); }
 .font-2 { font-family: var(--font-libre-baskerville); }
 .font-3 { font-family: var(--font-glacial-indifference); }
 
 @font-face {
-  font-family: 'Fino Sans Title';
-  src: url("/fonts/FinoSansTitle-Regular.ttf") format("truetype");
+  font-family: 'Italiano';
+  src: url("/fonts/Italiana-Regular.ttf") format("truetype");
 }
 
 @font-face {
