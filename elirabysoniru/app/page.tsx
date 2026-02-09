@@ -4,9 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import Project1 from "./project-summaries/project1";
 import Project2 from "./project-summaries/project2";
+import ScrollSection from "./components/scroll-section";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import { Mail, Phone, Send } from "lucide-react";
 
 type FormData = {
   firstName: string;
@@ -19,8 +21,17 @@ type FormData = {
 //             <div className="h-[20px] w-[20px] rounded-full bg-brass border border-white"></div>
 
 export default function Home() {
-  const carouselImages = ["/img1.jpg", "/img2.jpg", "/img7.jpg"];
-  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  const StarIcon = ({ className = "" }: { className?: string }) => (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+    </svg>
+  );
 
   const { register, handleSubmit, reset } = useForm<FormData>();
   const [loading, setLoading] = useState(false);
@@ -38,7 +49,7 @@ export default function Home() {
           phone: data.phone,
           message: data.message,
         },
-        "6uQe686K3U7R7TzsR" // Your EmailJS Public Key
+        "6uQe686K3U7R7TzsR", // Your EmailJS Public Key
       );
       alert("Your booking was submitted successfully!");
       reset();
@@ -51,23 +62,26 @@ export default function Home() {
   };
 
   const [currentSlide, setCurrentSlide] = useState(0);
-  
+
   const testimonials = [
     {
       text: "Working with Elira was a game-changer for my wardrobe. Their attention to detail, creativity, and professionalism exceeded my expectations. I'd recommend them to anyone looking for quality, professionalism and perfection.",
       name: "Idara",
-      location: "Lagos, Nigeria"
+      role: "Client",
+      location: "Lagos, Nigeria",
     },
     {
       text: "Elira transformed how I approach my personal style. Their innovative design process and meticulous execution delivered results that went beyond what I imagined possible. The seamless blend of functionality and aesthetics in every piece reflects true craftsmanship. Absolutely exceptional work.",
       name: "Dumkene",
-      location: "Lagos, Nigeria"
+      role: "Client",
+      location: "Lagos, Nigeria",
     },
     {
       text: "The collaboration with Elira was nothing short of remarkable. Their strategic vision, combined with flawless technical execution, created a wardrobe that perfectly aligns with my lifestyle and goals. The precision and creative problem-solving throughout the process were impressive. Outstanding service from start to finish.",
       name: "Jessica",
-      location: "Lagos, Nigeria"
-    }
+      role: "Client",
+      location: "Lagos, Nigeria",
+    },
   ];
 
   useEffect(() => {
@@ -85,57 +99,49 @@ export default function Home() {
       <Navbar />
       <main className="">
         {/* Hero section */}
-        <section
+        <ScrollSection
           id="hero"
-          className="w-full relative bg-background flex flex-col items-center justify-center pt-0 pb-10 lg:px-20 box-border"
+          className="w-full relative bg-background flex flex-col items-center justify-center px-5 md:px-10 lg:px-20 py-10 md:py-14 box-border"
         >
           {/* Nested: Hero background image container */}
-          <div className="self-stretch rounded-none lg:rounded-[20px] h-full bg-[url('/herobg.jpg')] bg-cover bg-no-repeat bg-[top]">
-            {/* Nested: Overlay with black transparent background */}
-            <div className="self-stretch rounded-none lg:rounded-[20px] h-full min-h-[700px] flex flex-col items-start justify-center bg-black/50">
-              {/* Nested: Heading container */}
-              <div className="w-full h-1/2 text-start px-10 md:px-20 md:pt-10 animate-slideInUp">
-                {/* Text block: Main hero heading */}
-                <h1 className="font-1 text-white/65 text-[100px] md:text-[140px] lg:text-[180px]">
-                  ELIRA BY SONIRU.
-                </h1>
-              </div>
-              {/* Nested: Content row with text and image */}
-              <div className="w-full h-1/2 flex flex-col md:flex-row items-start animate-slideInUp align-center  px-10 lg:px-20 md:pt-10 gap-20">
-                {/* Text block: Hero description and button */}
-                <div className="w-full md:w-1/2 h-full text-white font-3 flex flex-col items-start justify-center gap-5">
-                  <p className="text-2xl md:text-4xl w-4/5">
-                    Luxury Space Curation & Professional Organizing for Those
-                    Who Expect More.
-                  </p>
-                  {/* Nested: Consultation button */}
-                  <Link
-                    href="/bookings"
-                    className=" bg-gray-100/10 border-linen border-solid border-[0.5px] py-3 px-4 text-sm md:text-base hover:bg-white hover:text-black"
-                  >
-                    Book Your Consultation →
-                  </Link>
+          <div className="w-full mx-auto">
+            <div className="relative w-full rounded-[28px] overflow-hidden bg-[url('/herobg.jpg')] bg-cover bg-no-repeat bg-center shadow-xl">
+              {/* Nested: Overlay with black transparent background */}
+              <div className="relative w-full min-h-[600px] md:min-h-[720px] flex flex-col items-left justify-center bg-gradient-to-b from-black/25 via-black/45 to-black/60">
+                {/* Nested: Heading container */}
+                <div className="w-full text-left px-8 sm:px-10 md:px-16 lg:px-20 animate-slideInUp">
+                  {/* Text block: Main hero heading */}
+                  <div className="w-full mx-auto">
+                    <h1 className="font-1 text-white/80 leading-[0.92] tracking-tight text-[96px] md:text-[140px] lg:text-[180px] text-left">
+                      ELIRA BY SONIRU.
+                    </h1>
+                    <p className="text-base sm:text-lg md:text-2xl text-white/85 max-w-[560px] text-left">
+                      Luxury Space Curation & Professional Organizing
+                    </p>
+                  </div>
                 </div>
-                {/* Image block: Curved text image */}
-                <div className="hidden w-full md:w-1/2 h-full md:flex items-start justify-center px-6 py-4">
-                  {/* Image: Curved Text */}
-                  <Image
-                    className="w-[180px] sm:w-[220px] md:w-[260px] object-cover rotate-360"
-                    width={260}
-                    height={260}
-                    alt="Curved Text"
-                    src="/curvetext.png"
-                  />
+                {/* Nested: Content row with text and image */}
+                <div className="w-full flex flex-col items-left justify-center animate-slideInUp px-8 sm:px-10 md:px-16 lg:px-20 mt-6 md:mt-10 gap-6">
+                  {/* Text block: Hero description and button */}
+                  <div className="w-full text-white font-3 flex flex-col items-left justify-center gap-6">
+                    {/* Nested: Consultation button */}
+                    <Link
+                      href="/bookings"
+                      className="relative isolate overflow-hidden rounded-2xl px-10 py-4 text-base text-white/90 bg-white/10 border border-white/20 backdrop-blur-2xl shadow-[0_14px_36px_rgba(0,0,0,0.45)] hover:bg-white/14 hover:border-white/30 transition-colors before:absolute before:inset-0 before:rounded-[inherit] before:bg-gradient-to-b before:from-white/22 before:via-white/10 before:to-white/0 before:pointer-events-none after:absolute after:inset-[1px] after:rounded-[calc(1rem-1px)] after:ring-1 after:ring-white/10 after:pointer-events-none w-full max-w-[520px] text-center"
+                    >
+                      Book Your Consultation →
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
+        </ScrollSection>
 
         {/* About Us section */}
-        <section
+        <ScrollSection
           id="about-us"
-          className="w-full relative bg-coffee overflow-y-auto flex flex-col gap-8 md:gap-5 items-start justify-center box-border text-left text-white font-3 py-10 md:py-30 pb-10 px-5 md:px-20"
+          className="w-full relative bg-background overflow-y-auto flex flex-col gap-8 md:gap-5 items-start justify-center box-border text-left text-coffee font-3 py-5 md:py-20 pb-10 px-5 md:px-20"
         >
           {/* Nested: About Us main container */}
           <div className="w-full">
@@ -186,7 +192,7 @@ export default function Home() {
           <div className="w-full flex flex-col-reverse md:flex-row justify-between gap-8 md:gap-20">
             {/* Image: About image left */}
             <Image
-              className="w-full md:w-1/2 rounded-2xl md:h-1/4 object-contain"
+              className="w-full md:w-1/2 rounded-2xl md:h-1/4 object-cover"
               width={432}
               height={174}
               alt=""
@@ -205,11 +211,13 @@ export default function Home() {
               </p>
             </div>
           </div>
-
-          <div className="w-full my-10 h-0.5 bg-white/20"></div>
-
-          {/* Nested: Meet the Founder section */}
-          <div className="w-full flex flex-col md:flex-row justify-center gap-8 md:gap-20">
+          
+        </ScrollSection>
+{/* Nested: Meet the Founder section */}
+          <ScrollSection
+            as="div"
+            className="py-10 md:py-20 pb-10 px-5 md:px-20 bg-coffee w-full flex flex-col md:flex-row justify-center gap-8 md:gap-20 text-white"
+          >
             {/* Text block: Founder info */}
             <div className="w-full flex flex-col">
               <div className="flex flex-row justify-between ">
@@ -229,8 +237,8 @@ export default function Home() {
                   shape the way we live, think, and feel.
                 </p>
                 <p className="h-full text-xl md:text-2xl">
-                  Over time, organizing stopped feeling like a chore, it became
-                  my quiet superpower. I learned that when you walk into a space
+                  Over time, organizing started feeling like a secret
+                  superpower. I learned that when you walk into a space
                   that&apos;s thoughtfully arranged for your life, you move
                   through your day with less friction and more freedom.
                 </p>
@@ -246,23 +254,23 @@ export default function Home() {
               </div>
             </div>
             {/* Image: Founder image */}
-            <Image
-              className="w-full md:w-1/2 rounded-2xl"
-              width={594}
-              height={154}
-              alt=""
-              src="/founder.jpg"
-            />
-          </div>
-        </section>
-
+            <div className="mt-6 w-full md:w-1/2 rounded-2xl overflow-hidden">
+              <Image
+                className="w-full h-full object-cover grayscale scale-120 object-top"
+                width={594}
+                height={154}
+                alt=""
+                src="/founder-new.jpg"
+              />
+            </div>
+        </ScrollSection>
         {/* Our Services section */}
-        <section
+        <ScrollSection
           id="our-services"
-          className="text-left text-xl py-10 md:py-30 text-coffee font-3 flex flex-col gap-5 md:gap-10 bg-background px-5 md:px-20 lg:px-20"
+          className="text-left text-xl py-10 md:py-20 text-coffee font-3 flex flex-col gap-5 md:gap-10 bg-background px-5 md:px-20 lg:px-20"
         >
           {/* Nested: Our Services header row */}
-          <div className="flex flex-row justify-between pt-5 md:pt-10 lg:pt-16">
+          <div className="flex flex-row justify-between ">
             {/* Text block: OUR SERVICES heading */}
             <h1 className="font-1 text-5xl lg:text-[128px] leading-tight text-maroon">
               OUR SERVICES
@@ -273,87 +281,88 @@ export default function Home() {
             </h1>
           </div>
           {/* Nested: Our Services content row */}
-          <div className="flex flex-col md:flex-row justify-between gap-8 md:gap-16 lg:gap-20">
-            {/* Text block and image left */}
-            <div className="flex flex-col justify-between w-full md:w-1/2 gap-8 md:gap-10 text-xl md:text-2xl">
-              <p>
-                We create systems that would prevent future clutter. The kind
-                that makes a space feel light, breathable, and easy to maintain.
-              </p>
+          <div className="flex flex-col md:flex-row-reverse justify-between gap-8 md:gap-16 lg:gap-20">
+            <div className="flex flex-col font-3 text-2xl justify-between w-full md:text-3xl lg:text-3xl">
+              <div className="self-stretch mb-6 border-t-[0.65px] border-black flex flex-row gap-4 w-full">
+                <div className="mt-6 opacity-40 inline-flex justify-start items-start">
+                  <div className="justify-start text-stone-500 text-2xl font-normal font-3 leading-8">
+                    01
+                  </div>
+                </div>
+                <div className="w-full mt-6 ">
+                  <div className="w-full text-stone-800 text-2xl font-normal font-3 leading-8">
+                    Professional Organisation{" "}
+                  </div>
+                </div>
+              </div>
+              <div className="self-stretch mb-6 border-t-[0.65px] border-black flex flex-row gap-4 w-full">
+                <div className="mt-6 opacity-40 inline-flex justify-start items-start">
+                  <div className="justify-start text-stone-500 text-2xl font-normal font-3 leading-8">
+                    02
+                  </div>
+                </div>
+                <div className="w-full mt-6 ">
+                  <div className="w-full text-stone-800 text-2xl font-normal font-3 leading-8">
+Space / Visual Transformation                  </div>
+                </div>
+              </div>
+               <div className="self-stretch mb-6 border-t-[0.65px] border-black flex flex-row gap-4 w-full">
+                <div className="mt-6 opacity-40 inline-flex justify-start items-start">
+                  <div className="justify-start text-stone-500 text-2xl font-normal font-3 leading-8">
+                    03
+                  </div>
+                </div>
+                <div className="w-full mt-6 ">
+                  <div className="w-full text-stone-800 text-2xl font-normal font-3 leading-8">
+Move-In Organisation                </div>
+                </div>
+              </div>
+ <div className="self-stretch mb-6 border-t-[0.65px] border-black flex flex-row gap-4 w-full">
+                <div className="mt-6 opacity-40 inline-flex justify-start items-start">
+                  <div className="justify-start text-stone-500 text-2xl font-normal font-3 leading-8">
+                    04
+                  </div>
+                </div>
+                <div className="w-full mt-6 ">
+                  <div className="w-full text-stone-800 text-2xl font-normal font-3 leading-8">
+Virtual Atelier                </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between w-full gap-8 md:gap-10 text-xl md:text-2xl">
               {/* Image: Services image */}
               <Image
-                className="w-full rounded-2xl object-contain h-auto"
+                className="w-full rounded-2xl object-cover h-auto"
                 width={621}
                 height={387}
                 alt=""
                 src="/img6.jpg"
               />
-            </div>
-            {/* Text block right with service details */}
-            <div className="overflow-scroll flex flex-col justify-around w-full md:w-1/2 h-[540px]">
-              <div>
-                <h2 className="text-xl md:text-2xl font-semibold">
-                  Professional Home & Space Organization
-                </h2>
-                <ul>
-                  <li>
-                    ○ Decluttering and editing spaces to create calm, livable
-                    order
-                  </li>
-                  <li>
-                    ○ Streamlined wardrobe creation and closet styling Pantry,
-                    kitchen, and utility area setups with functional product
-                    placements
-                  </li>
-                  <li>
-                    ○ Move-in and relocation setups, unpacking, zoning, and full
-                    home resets 
-                  </li>
-                  <li>
-                    ○ Workspace and office organizing for maximum flow
-                    and productivity
-                  </li>
-                </ul>
-              </div>
-              <div>
-                <h2 className="text-xl md:text-2xl font-semibold">
-                  Space Transformation
-                </h2>
-                <ul>
-                  <li>
-                    ○ Room refreshes and re-styling for a new look without a full
-                    renovation
-                  </li>
-                  <li>
-                    ○ Visual upgrades: mood boards, color palettes, and styling
-                    consultations
-                  </li>
-                  <li>
-                    ○ Sourcing and placement of design touches that elevate the
-                    feel of your space
-                  </li>
-                </ul>
-              </div>
+              <p>
+                We create systems that would prevent future clutter. The kind
+                that makes a space feel light, breathable, and easy to maintain.
+              </p>
             </div>
           </div>
-        </section>
+        </ScrollSection>
 
-        <section
+        <ScrollSection
           id="our-process"
-          className="bg-coffee px-5 md:px-20 xl:h-full py-15 lg:py-20 xl:py-30"
+          className="bg-coffee px-5 md:px-20 xl:h-full py-10 lg:py-20"
         >
-          <div className="h-1/4">
-            <div className=" flex flex-row justify-between">
-              {/* Text block: OUR PROCESS heading */}
-              <h1 className="text-brass font-1  text-5xl lg:text-[128px] leading-tight text-white">
-                OUR PROCESS
-              </h1>
-              {/* Text block: Arrow */}
-              <h1 className="text-brass font-1  text-5xl lg:text-[128px] leading-tight text-white">
-                ←
-              </h1>
-            </div>
+          {/* Nested: Our Process header */}
+          <div className="flex flex-row justify-between ">
+            {/* Text block: Heading */}
+            <h1 className="font-1 text-5xl md:text-6xl lg:text-[128px] leading-tight text-brass">
+              OUR PROCESS
+            </h1>
+            {/* Text block: Arrow */}
+            <h1 className="font-1 text-5xl lg:text-[128px] leading-tight text-white">
+              ←
+            </h1>
           </div>
+
           <div className="h-3/4 grid grid-cols-1 grid-rows-4 md:grid-cols-2 md:grid-rows-2 gap-10 items-start pt-10">
             <div className="flex flex-col h-full items-start gap-[9px]">
               <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline ">
@@ -364,45 +373,46 @@ export default function Home() {
                 understand your needs, style, and daily routines.
               </p>
             </div>
-            <div className="flex flex-col items-start justify-end gap-[9px]">
-              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
-                2.⁠ ⁠Personalized Plan
-              </h1>
-              <p className="text-white font-3 text-xl">
-                We design a tailored plan: zones, systems, styling touches, and
-                product sourcing to bring your vision to life.
-              </p>
-            </div>
+
             <div className="flex flex-col h-full items-start gap-[9px]">
-              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
-                3.⁠ ⁠Transformation & Styling
+              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline ">
+                2. Declutter & Sort
               </h1>
               <p className="text-white font-3 text-xl">
-                Our team handles every detail, decluttering, organizing,
-                styling, and setup, so you can step back in when it’s all done.
+                We edit and sort your items with intention, keeping what serves
+                you and letting go of what no longer fits your lifestyle.
               </p>
             </div>
 
-            <div className="flex flex-col items-start justify-end gap-[9px]">
-              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline">
-                4. ⁠Reveal & Ongoing Care
+            <div className="flex flex-col h-full items-start gap-[9px]">
+              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline ">
+                3. Organize & Style
               </h1>
               <p className="text-white font-3 text-xl">
-                We reveal your refreshed space and guide you on maintaining it.
-                Seasonal refresh visits are available for clients who want
-                long-term care.
+                We create functional systems and elevate the look and feel so
+                your space is both beautiful and easy to maintain.
+              </p>
+            </div>
+
+            <div className="flex flex-col h-full items-start gap-[9px]">
+              <h1 className="text-brass font-2 text-xl md:text-2xl hover:underline ">
+                4. Maintenance & Support
+              </h1>
+              <p className="text-white font-3 text-xl">
+                We hand over clear routines and guidance so your new system
+                stays effortless long after we’re done.
               </p>
             </div>
           </div>
-        </section>
+        </ScrollSection>
 
         {/* Our Projects section */}
-        <section
+        <ScrollSection
           id="our-projects"
-          className="hidden text-left py-30 text-maroon flex-col gap-8 md:gap-12 lg:gap-20 md:px-20 lg:px-40"
+          className="hidden text-left py-20 text-maroon flex-col gap-8 md:gap-12 lg:gap-20 md:px-20 lg:px-40"
         >
           {/* Nested: Our Projects header row */}
-          <div className="flex flex-row justify-center md:justify-between gap-8 md:gap-10">
+          <div className="flex flex-row justify-between">
             {/* Text block: OUR PROJECTS heading */}
             <h1 className="font-1 text-5xl md:text-6xl lg:text-[92px]">
               OUR PROJECTS
@@ -426,16 +436,15 @@ export default function Home() {
               </h1>
             </Link>
           </div>
-        </section>
+        </ScrollSection>
 
         {/* Testimonials section */}
-        <section
+        <ScrollSection
           id="testimonials"
           className="h-full text-left pt-20 flex flex-col-reverse md:flex-row gap-8 px-5 md:px-20 lg:px-20"
         >
           {/* Nested: Carousel container */}
-          <div className="w-full flex flex-col justify-start">
-            {/* Carousel component */}
+          {/* <div className="w-full flex flex-col justify-start">
             <div className="flex flex-col gap-5 items-start ">
               <div
                 className="w-full max-w-[628px] h-[300px] md:h-[450px] lg:h-[551px] bg-coffee rounded-3xl flex items-center justify-center"
@@ -450,7 +459,7 @@ export default function Home() {
                     className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-black/30 text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-full cursor-pointer pointer-events-auto"
                     onClick={() =>
                       setCarouselIndex((prev) =>
-                        prev === 0 ? carouselImages.length - 1 : prev - 1
+                        prev === 0 ? carouselImages.length - 1 : prev - 1,
                       )
                     }
                     aria-label="Previous Slide"
@@ -461,7 +470,7 @@ export default function Home() {
                     className="w-8 h-8 md:w-10 md:h-10 lg:w-[40px] lg:h-[40px] bg-black/30 text-lg md:text-xl lg:text-[30px] flex items-center justify-center text-white rounded-full cursor-pointer pointer-events-auto"
                     onClick={() =>
                       setCarouselIndex((prev) =>
-                        prev === carouselImages.length - 1 ? 0 : prev + 1
+                        prev === carouselImages.length - 1 ? 0 : prev + 1,
                       )
                     }
                     aria-label="Next Slide"
@@ -471,7 +480,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* Nested: Testimonials component positioned absolutely on desktop */}
 
           {/* Nested: Testimonials header container */}
@@ -486,49 +495,59 @@ export default function Home() {
                 from our clients
               </p>
             </div>
- <div className="w-full h-[420px] md:h-[320px] overflow-hidden relative">
-      {testimonials.map((testimonial, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-            index === currentSlide ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <div className="lg:px-7 xl:px-10 h-full">
-            <div className="w-full h-full text-white flex flex-col pb-5 border-0 border-b-1 border-b-red-950">
-              <div className="w-full h-full text-red-900 flex flex-col justify-evenly">
-                <div className="font-3 text-[24px]">
-                  {testimonial.text}
+            <div className="w-full relative grid">
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className={`col-start-1 row-start-1 transition-opacity duration-1000 ease-in-out ${
+                    index === currentSlide
+                      ? "opacity-100"
+                      : "opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <div className="lg:px-7 xl:px-10 h-full">
+                    <div className="bg-white flex flex-col gap-6 items-start h-full w-full rounded-[24px] shadow-[0px_20px_25px_0px_rgba(0,0,0,0.05),0px_8px_10px_0px_rgba(0,0,0,0.05)] py-8 px-8">
+                      <div className="flex gap-1 items-start w-full">
+                        {Array.from({ length: 5 }).map((_, starIndex) => (
+                          <StarIcon
+                            key={starIndex}
+                            className="w-5 h-5 text-brass"
+                          />
+                        ))}
+                      </div>
+                      <div className="w-full flex-1">
+                        <p className="font-3 text-coffee text-[20px] leading-[32.5px] whitespace-pre-wrap">
+                          {`"${testimonial.text}"`}
+                        </p>
+                      </div>
+                      <div className="w-full flex items-center justify-between">
+                        <div className="flex flex-col gap-1">
+                          <p className="font-2 text-coffee text-[20px] leading-[28px]">
+                            {testimonial.name}
+                          </p>
+                          <p className="font-3 text-[16px] leading-[24px] text-coffee/60">
+                            {testimonial.role ?? testimonial.location}
+                          </p>
+                        </div>
+                        <p className="font-3 leading-none whitespace-pre-wrap">
+                          <span className="text-brass text-[24px] leading-[32px]">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <span className="text-coffee/30 text-[18px] leading-[28px]">
+                            {` / ${String(testimonials.length).padStart(2, "0")}`}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className="font-3 text-[24px]">{testimonial.name}</p>
-                  <p className="font-3 text-[16px]">{testimonial.location}</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
-        </div>
-      ))}
-      
-      {/* Progress indicators */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {testimonials.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-              index === currentSlide ? 'bg-red-900' : 'bg-red-300'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-    </div>
-          </div>
-        </section>
+        </ScrollSection>
 
         {/* Consultation booking section */}
-        <section className="hidden bg-coffee h-full my-10 md:my-20 px-5 md:px-10 lg:px-30 py-10 md:py-20 flex-col gap-5 mx-5 md:mx-10 lg:mx-20">
+        <ScrollSection className="hidden bg-coffee h-full my-10 md:my-20 px-5 md:px-10 lg:px-30 py-10 md:py-20 flex-col gap-5 mx-5 md:mx-10 lg:mx-20">
           {/* Text block: Booking heading */}
           <h1 className="font-2 text-3xl md:text-4xl lg:text-4xl w-full text-center text-white">
             Book a consultation today to get started.
@@ -539,120 +558,180 @@ export default function Home() {
               CLICK HERE →
             </p>
           </Link>
-        </section>
+        </ScrollSection>
       </main>
 
       {/* Contact Us section */}
-      <section
+      <ScrollSection
         id="contact"
-        className="w-full h-full bg-[url('/img1.jpg')] bg-cover mt-30 px-5 md:px-10 lg:px-20 py-10 md:py-20"
+        className="w-full h-full bg-[url('/img1.jpg')] bg-cover mt-20 md:mt-28 px-5 md:px-10 lg:px-20 py-10 md:py-20"
       >
-        <div className="w-full h-full py-10 bg-maroon flex flex-col md:flex-row font-3 text-white">
-          {/* Contact Info */}
-          <div className="w-full md:w-1/2 flex flex-col justify-between gap-5 md:gap-10 px-5 md:px-10 lg:px-20 py-10 md:py-20">
-            <div className="flex flex-col justify-start gap-5">
-              <h1 className="font-2 text-3xl md:text-4xl lg:text-[48px] w-2/3">
-                Get In Touch With Us
-              </h1>
-              <p className="font-3 text-base md:text-lg lg:text-xl">
+        <div className="w-full max-w-[1120px] mx-auto rounded-[40px] shadow-[0px_25px_50px_-12px_rgba(0,0,0,0.2)] overflow-hidden relative">
+          <Image
+            src="/img1.jpg"
+            alt=""
+            fill
+            sizes="(max-width: 768px) 100vw, 1120px"
+            className="object-cover"
+            priority={false}
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(105.583deg,rgba(107,12,12,0.98)_0%,rgba(107,12,12,0.96)_50%,rgba(50,43,33,0.98)_100%)]" />
+
+          <div className="relative z-10 w-full px-8 py-10 md:p-12 font-3 text-white grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-4">
+                <div className="font-1 text-[40px] leading-[36px] tracking-[-1px]">
+                  <p>GET IN</p>
+                  <p>TOUCH</p>
+                </div>
+                <div className="h-1 w-20 bg-brass" />
+              </div>
+
+              <p className="text-[18px] leading-[29.25px] text-white/80 max-w-[34ch]">
                 Have a project in mind or need expert guidance? We’d love to
                 hear from you. Reach out to us for inquiries, collaborations or
                 consultations.
               </p>
-            </div>
-            <div className="w-1/2">
-              <p className="font-3 text-base md:text-lg lg:text-xl">
-                +234 704 5313 373
-              </p>
-              <p className="font-3 text-base md:text-lg lg:text-xl">
-                tryelira@gmail.com{" "}
-              </p>
-            </div>
-          </div>
 
-          {/* Contact Form */}
-          <div className="w-full md:w-1/2 flex flex-col justify-center gap-5 text-base md:text-lg lg:text-xl px-5 md:px-10 lg:px-20">
-            <form
-              onSubmit={handleSubmit(onSubmit)}
-              className="flex flex-col gap-5"
-            >
-              <div className="w-full grid grid-cols-1 md:grid-cols-2 grid-rows-2 gap-x-8 gap-y-2 items-start">
-                <div>
-                  <p>First Name</p>
-                  <input
-                    className="w-full h-[24px] bg-brass text-white placeholder-gray outline-none border-none px-2 py-4 text-lg"
-                    type="text"
-                    {...register("firstName")}
-                    required
-                    placeholder="Enter your first name"
-                    id="firstName"
-                  />
-                </div>
-                <div>
-                  <p>Last Name</p>
-                  <input
-                    className="w-full h-[24px] bg-brass text-white placeholder-grey outline-none border-none  px-2 py-4 text-lg"
-                    type="text"
-                    {...register("lastName")}
-                    required
-                    placeholder="Enter your last name"
-                    id="lastName"
-                  />
-                </div>
-                <div>
-                  <p>Phone Number</p>
-                  <input
-                    className="w-full h-[24px] bg-brass text-white placeholder-gray outline-none border-none  px-2 py-4 text-lg"
-                    type="tel"
-                    {...register("phone")}
-                    required
-                    placeholder="Enter your phone"
-                    id="phone"
-                  />
-                </div>
-                <div>
-                  <p>Email</p>
-                  <input
-                    className="w-full h-[24px] bg-brass text-white placeholder-gray outline-none border-none text-lg px-2 py-4"
-                    type="email"
-                    {...register("email")}
-                    required
-                    placeholder="Enter your email"
-                    id="email"
-                  />
-                </div>
+              <div className="flex flex-col gap-6 pt-2">
+                <a
+                  href="tel:+2347045313373"
+                  className="flex items-center gap-4"
+                >
+                  <span className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-white" />
+                  </span>
+                  <span className="text-[18px] leading-[28px]">
+                    +234 704 5313 373
+                  </span>
+                </a>
+                <a
+                  href="mailto:tryelira@gmail.com"
+                  className="flex items-center gap-4"
+                >
+                  <span className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-white" />
+                  </span>
+                  <span className="text-[18px] leading-[28px]">
+                    tryelira@gmail.com
+                  </span>
+                </a>
               </div>
-              <div className="w-full">
-                <p>Message</p>
-                <textarea
-                  className="w-full h-[72px] bg-brass text-white placeholder-gray outline-none border-none text-lg p-2"
-                  {...register("message")}
-                  required
-                  placeholder="Enter your message"
-                  id="message"
-                />
-              </div>
-              <div className="w-full">
+            </div>
+
+            <div className="w-full">
+              <form
+                onSubmit={handleSubmit(onSubmit)}
+                className="flex flex-col gap-6"
+              >
+                <div className="grid grid-cols-1 gap-6">
+                  <div className="flex flex-col gap-3">
+                    <label
+                      htmlFor="firstName"
+                      className="text-[14px] leading-[20px] tracking-[0.35px] uppercase text-white/90"
+                    >
+                      First Name *
+                    </label>
+                    <input
+                      id="firstName"
+                      className="w-full h-[60px] rounded-[16px] bg-white/5 border border-white/10 px-5 text-[16px] text-white placeholder:text-white/40 outline-none"
+                      type="text"
+                      {...register("firstName")}
+                      required
+                      placeholder="Enter first name"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-3">
+                    <label
+                      htmlFor="lastName"
+                      className="text-[14px] leading-[20px] tracking-[0.35px] uppercase text-white/90"
+                    >
+                      Last Name *
+                    </label>
+                    <input
+                      id="lastName"
+                      className="w-full h-[60px] rounded-[16px] bg-white/5 border border-white/10 px-5 text-[16px] text-white placeholder:text-white/40 outline-none"
+                      type="text"
+                      {...register("lastName")}
+                      required
+                      placeholder="Enter last name"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-3">
+                    <label
+                      htmlFor="phone"
+                      className="text-[14px] leading-[20px] tracking-[0.35px] uppercase text-white/90"
+                    >
+                      Phone Number
+                    </label>
+                    <input
+                      id="phone"
+                      className="w-full h-[60px] rounded-[16px] bg-white/5 border border-white/10 px-5 text-[16px] text-white placeholder:text-white/40 outline-none"
+                      type="tel"
+                      {...register("phone")}
+                      required
+                      placeholder="Enter phone number"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-3">
+                    <label
+                      htmlFor="email"
+                      className="text-[14px] leading-[20px] tracking-[0.35px] uppercase text-white/90"
+                    >
+                      Email *
+                    </label>
+                    <input
+                      id="email"
+                      className="w-full h-[60px] rounded-[16px] bg-white/5 border border-white/10 px-5 text-[16px] text-white placeholder:text-white/40 outline-none"
+                      type="email"
+                      {...register("email")}
+                      required
+                      placeholder="Enter email address"
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-3">
+                    <label
+                      htmlFor="message"
+                      className="text-[14px] leading-[20px] tracking-[0.35px] uppercase text-white/90"
+                    >
+                      Message *
+                    </label>
+                    <textarea
+                      id="message"
+                      className="w-full min-h-[156px] rounded-[16px] bg-white/5 border border-white/10 px-5 py-4 text-[16px] leading-[24px] text-white placeholder:text-white/40 outline-none resize-none"
+                      {...register("message")}
+                      required
+                      placeholder="Tell us about your project..."
+                    />
+                  </div>
+                </div>
+
                 <button
                   type="submit"
                   disabled={loading}
-                  className={`w-full text-maroon text-sm md:text-base lg:text-lg py-[12px] px-10 md:px-20 lg:px-40 flex justify-center ${
-                    loading ? "opacity-70 cursor-not-allowed" : "bg-background"
+                  className={`w-full h-[68px] rounded-[16px] bg-brass text-white shadow-[0px_10px_15px_0px_rgba(0,0,0,0.2),0px_4px_6px_0px_rgba(0,0,0,0.2)] flex items-center justify-center gap-3 text-[18px] leading-[28px] ${
+                    loading
+                      ? "opacity-70 cursor-not-allowed"
+                      : "hover:opacity-95 transition"
                   }`}
                 >
-                  {loading ? "Sending..." : "Submit"}
+                  {loading ? "Sending..." : "Send Message"}
+                  <Send className="w-5 h-5" />
                 </button>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
         </div>
-      </section>
+      </ScrollSection>
 
       {/* Footer section */}
       <footer className="w-full md:px-40 py-5 bg-coffee flex flex-col md:flex-row justify-center gap-2 md:justify-between items-center font-3 text-white text-xl">
         <div className="">All Rights Reserved.</div>
-        <div className="">© Elira By Soniru</div>
-        <div className="">Built by Exhibit O Design</div>
+        <div className="">© 2025 Elira Elira By Soniru</div>
       </footer>
     </div>
   );
