@@ -213,16 +213,19 @@ export default function Home() {
           </div>
           
         </ScrollSection>
+
 {/* Nested: Meet the Founder section */}
           <ScrollSection
             as="div"
-            className="py-10 md:py-20 pb-10 px-5 md:px-20 bg-coffee w-full flex flex-col md:flex-row justify-center gap-8 md:gap-20 text-white"
+  className="py-10 md:py-20 px-5 md:px-20 bg-coffee text-white"
           >
+              <div className="flex flex-col-reverse md:flex-row gap-10">
+
             {/* Text block: Founder info */}
-            <div className="w-full flex flex-col">
+  <div className="w-full md:w-1/2 flex flex-col">
               <div className="flex flex-row justify-between ">
                 {/* Text block: OUR SERVICES heading */}
-                <h1 className="font-1 text-6xl lg:text-[128px] text-left leading-tight text-brass pb-8">
+                <h1 className="font-1 text-6xl lg:text-[80px] text-left leading-tight text-brass pb-8">
                   MEET OUR FOUNDER
                 </h1>
                 <h1 className="font-1 text-6xl lg:text-[128px] text-left leading-tight text-brass pb-8">
@@ -254,7 +257,7 @@ export default function Home() {
               </div>
             </div>
             {/* Image: Founder image */}
-            <div className="mt-6 w-full md:w-1/2 rounded-2xl overflow-hidden">
+  <div className="w-full md:w-1/2 rounded-2xl overflow-hidden">
               <Image
                 className="w-full h-full object-cover grayscale scale-120 object-top"
                 width={594}
@@ -263,7 +266,9 @@ export default function Home() {
                 src="/founder-new.jpg"
               />
             </div>
+            </div>
         </ScrollSection>
+
         {/* Our Services section */}
         <ScrollSection
           id="our-services"
